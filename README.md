@@ -1,5 +1,7 @@
 # AI-Powered Customer Query & Complaint Deflection System for Health360
 
+**📋 Business Requirements Document:** [View BRD](https://docs.google.com/document/d/1z1zIDr27pgcMZdyzygvX54X5GfciW0VLgDAIVlAFKkA/edit?usp=sharing)
+
 ## Quick Start
 
 ```bash
