@@ -86,7 +86,7 @@ export default function ProductsPage() {
         cell: ({ row }) => {
           const s = row.original.status;
           const variant = s === "active" ? "default" : s === "draft" ? "secondary" : "destructive";
-          return <Badge variant={variant as any}>{s}</Badge>;
+          return <Badge variant={variant}>{s}</Badge>;
         },
       },
       {

@@ -23,7 +23,7 @@ const productMap = new Map(products.map((p) => [p.id, p]));
 const customerMap = new Map(customers.map((c) => [c.id, c]));
 const itemsByOrder = new Map<string, typeof orderItems>();
 for (const it of orderItems) {
-  const arr = (itemsByOrder.get(it.orderId) as any) || [];
+  const arr = itemsByOrder.get(it.orderId) || [];
   arr.push(it);
   itemsByOrder.set(it.orderId, arr);
 }
@@ -37,7 +37,7 @@ export default function OrdersPage() {
 
   const enriched: OrderWithCounts[] = React.useMemo(() => {
     return rows.map((o) => {
-      const items = (itemsByOrder.get(o.id) as any) || [];
+      const items = itemsByOrder.get(o.id) || [];
       const cust = customerMap.get(o.customerId);
       return {
         ...o,
@@ -95,7 +95,7 @@ export default function OrdersPage() {
           const s = row.original.status;
           const variant =
             s === "paid" ? "default" : s === "fulfilled" ? "secondary" : s === "pending" ? "outline" : "destructive";
-          return <Badge variant={variant as any}>{s}</Badge>;
+          return <Badge variant={variant}>{s}</Badge>;
         },
       },
       {
@@ -151,7 +151,7 @@ export default function OrdersPage() {
   }, []);
 
   const activeOrder = openId ? rows.find((o) => o.id === openId) || null : null;
-  const activeItems = openId ? ((itemsByOrder.get(openId) as any) || []) : [];
+  const activeItems = openId ? (itemsByOrder.get(openId) || []) : [];
   const activeCustomer = activeOrder ? customerMap.get(activeOrder.customerId) || null : null;
 
   function saveStatus() {
@@ -170,7 +170,7 @@ export default function OrdersPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as any)}>
+          <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as "all" | OrderStatus)}>
             <SelectTrigger className="w-[160px]">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
@@ -289,7 +289,7 @@ export default function OrdersPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {activeItems.map((it: any) => {
+                      {activeItems.map((it) => {
                         const p = productMap.get(it.productId);
                         return (
                           <tr key={it.id} className="border-t">

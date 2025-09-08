@@ -5,7 +5,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { customers as seedCustomers } from "@/data/dataset";
 import { Customer } from "@/data/types";
 import { DataTable } from "@/components/data-table/DataTable";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
