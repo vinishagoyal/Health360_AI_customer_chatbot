@@ -2,11 +2,10 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import {
   MessageSquare,
@@ -15,11 +14,10 @@ import {
   Bot,
   User,
   Clock,
-  CheckCircle,
-  AlertCircle
+  CheckCircle
 } from "lucide-react";
 import { getOpenRouterClient, OpenRouterMessage } from "@/lib/openrouter";
-import { buildChatContext, buildSystemPrompt, findRelevantProducts, formatProductInfo } from "@/lib/chat-context";
+import { buildChatContext, buildSystemPrompt } from "@/lib/chat-context";
 
 interface Message {
   id: string;

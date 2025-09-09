@@ -1,7 +1,7 @@
 "use client";
 
 import { products, customers, orders, orderItems } from "@/data/dataset";
-import { Product, Customer, Order } from "@/data/types";
+import { Product, Order } from "@/data/types";
 import { formatCurrency } from "@/lib/utils";
 
 export interface ChatContext {

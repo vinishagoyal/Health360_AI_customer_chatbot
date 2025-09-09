@@ -15,13 +15,13 @@ interface OpenRouterRequest {
 
 interface OpenRouterResponse {
   id: string;
-  choices: [{
+  choices: Array<{
     message: {
       content: string;
       role: string;
     };
     finish_reason: string;
-  }];
+  }>;
   usage: {
     prompt_tokens: number;
     completion_tokens: number;
