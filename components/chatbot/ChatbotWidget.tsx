@@ -8,15 +8,18 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { 
-  MessageSquare, 
-  X, 
-  Send, 
-  Bot, 
+import {
+  MessageSquare,
+  X,
+  Send,
+  Bot,
   User,
   Clock,
-  CheckCircle
+  CheckCircle,
+  AlertCircle
 } from "lucide-react";
+import { getOpenRouterClient, OpenRouterMessage } from "@/lib/openrouter";
+import { buildChatContext, buildSystemPrompt, findRelevantProducts, formatProductInfo } from "@/lib/chat-context";
 
 interface Message {
   id: string;
@@ -75,8 +78,13 @@ export function ChatbotWidget() {
   ]);
   const [inputValue, setInputValue] = React.useState("");
   const [isTyping, setIsTyping] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
+
+  // Initialize chat context and system prompt
+  const chatContext = React.useMemo(() => buildChatContext(), []);
+  const systemPrompt = React.useMemo(() => buildSystemPrompt(chatContext), [chatContext]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -94,26 +102,54 @@ export function ChatbotWidget() {
     }
   }, [isOpen]);
 
-  const generateBotResponse = (userMessage: string): string => {
-    const lowerMessage = userMessage.toLowerCase();
-    
-    if (lowerMessage.includes("product") || lowerMessage.includes("supplement") || lowerMessage.includes("vitamin")) {
-      return sampleResponses.productHelp;
-    } else if (lowerMessage.includes("order") || lowerMessage.includes("shipping") || lowerMessage.includes("delivery")) {
-      return sampleResponses.orderHelp;
-    } else if (lowerMessage.includes("help") || lowerMessage.includes("assist")) {
-      return sampleResponses.generalHelp;
-    } else {
-      return sampleResponses.fallback;
+  const generateAIResponse = async (userMessage: string): Promise<string> => {
+    try {
+      setError(null);
+
+      // Build conversation history for context
+      const conversationHistory: OpenRouterMessage[] = [
+        { role: "system", content: systemPrompt },
+        ...messages
+          .filter(msg => msg.sender !== "bot" || msg.id !== "1") // Exclude initial greeting
+          .map(msg => ({
+            role: msg.sender === "user" ? "user" as const : "assistant" as const,
+            content: msg.content
+          })),
+        { role: "user", content: userMessage }
+      ];
+
+      const client = getOpenRouterClient();
+      const aiResponse = await client.chat(conversationHistory, {
+        temperature: 0.7,
+        maxTokens: 500
+      });
+
+      return aiResponse;
+    } catch (error) {
+      console.error("AI Response Error:", error);
+      setError("AI service temporarily unavailable");
+
+      // Fallback to mock responses if AI fails
+      const lowerMessage = userMessage.toLowerCase();
+      if (lowerMessage.includes("product") || lowerMessage.includes("supplement") || lowerMessage.includes("vitamin")) {
+        return sampleResponses.productHelp;
+      } else if (lowerMessage.includes("order") || lowerMessage.includes("shipping") || lowerMessage.includes("delivery")) {
+        return sampleResponses.orderHelp;
+      } else if (lowerMessage.includes("help") || lowerMessage.includes("assist")) {
+        return sampleResponses.generalHelp;
+      } else {
+        return sampleResponses.fallback;
+      }
     }
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
 
+    const userMessageContent = inputValue.trim();
     const userMessage: Message = {
       id: Date.now().toString(),
-      content: inputValue.trim(),
+      content: userMessageContent,
       sender: "user",
       timestamp: new Date(),
       status: "sent"
@@ -123,19 +159,33 @@ export function ChatbotWidget() {
     setInputValue("");
     setIsTyping(true);
 
-    // Simulate bot response delay
-    setTimeout(() => {
+    try {
+      const aiResponse = await generateAIResponse(userMessageContent);
+
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
-        content: generateBotResponse(inputValue),
+        content: aiResponse,
         sender: "bot",
         timestamp: new Date(),
         status: "delivered"
       };
-      
+
       setMessages(prev => [...prev, botResponse]);
+    } catch (error) {
+      console.error("Failed to get AI response:", error);
+
+      const errorResponse: Message = {
+        id: (Date.now() + 1).toString(),
+        content: "I'm sorry, I'm having trouble connecting right now. Please try again in a moment, or contact our support team directly.",
+        sender: "bot",
+        timestamp: new Date(),
+        status: "delivered"
+      };
+
+      setMessages(prev => [...prev, errorResponse]);
+    } finally {
       setIsTyping(false);
-    }, 1000 + Math.random() * 1000);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -171,38 +221,38 @@ export function ChatbotWidget() {
       {isOpen && (
         <div className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] h-[600px] max-h-[calc(100vh-6rem)] shadow-2xl transition-all duration-300">
           <Card className="h-full flex flex-col border-0 rounded-xl overflow-hidden">
-            {/* Header */}
-            <CardHeader className="pb-3 bg-primary text-primary-foreground">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-primary-foreground/20 rounded-full flex items-center justify-center">
-                    <Bot className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-sm font-semibold">Health360 AI Assistant</CardTitle>
-                    <div className="flex items-center gap-1 text-xs text-primary-foreground/80">
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span>Online</span>
+            {/* Fixed Header */}
+            <div className="flex-shrink-0 bg-primary text-primary-foreground">
+              <div className="p-4 pb-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-primary-foreground/20 rounded-full flex items-center justify-center">
+                      <Bot className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold">Health360 AI Assistant</h3>
+                      <div className="flex items-center gap-1 text-xs text-primary-foreground/80">
+                        <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                        <span>Online</span>
+                      </div>
                     </div>
                   </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsOpen(false)}
+                    className="h-8 w-8 p-0 text-primary-foreground hover:bg-primary-foreground/20"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
                 </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsOpen(false)}
-                  className="h-8 w-8 p-0 text-primary-foreground hover:bg-primary-foreground/20"
-                >
-                  <X className="h-4 w-4" />
-                </Button>
               </div>
-            </CardHeader>
+            </div>
 
-            <Separator />
-
-            {/* Messages Area */}
-            <CardContent className="flex-1 p-0">
-              <ScrollArea className="h-full p-4">
-                <div className="space-y-4">
+            {/* Scrollable Messages Area */}
+            <div className="flex-1 overflow-hidden">
+              <ScrollArea className="h-full">
+                <div className="p-4 space-y-4 min-h-full">
                   {messages.map((message) => (
                     <div
                       key={message.id}
@@ -284,37 +334,37 @@ export function ChatbotWidget() {
                   <div ref={messagesEndRef} />
                 </div>
               </ScrollArea>
-            </CardContent>
+            </div>
 
-            <Separator />
-
-            {/* Input Area */}
-            <div className="p-4 border-t bg-card">
-              <div className="flex gap-2">
-                <Input
-                  ref={inputRef}
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  placeholder="Type your message..."
-                  className="flex-1"
-                />
-                <Button
-                  onClick={handleSendMessage}
-                  disabled={!inputValue.trim() || isTyping}
-                  size="sm"
-                  className="px-3"
-                >
-                  <Send className="h-4 w-4" />
-                </Button>
-              </div>
-              <div className="flex items-center justify-between mt-2">
-                <Badge variant="secondary" className="text-xs">
-                  Powered by Health360 AI
-                </Badge>
-                <span className="text-xs text-muted-foreground">
-                  Press Enter to send
-                </span>
+            {/* Fixed Input Area */}
+            <div className="flex-shrink-0 border-t bg-card">
+              <div className="p-4">
+                <div className="flex gap-2">
+                  <Input
+                    ref={inputRef}
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    placeholder="Type your message..."
+                    className="flex-1"
+                  />
+                  <Button
+                    onClick={handleSendMessage}
+                    disabled={!inputValue.trim() || isTyping}
+                    size="sm"
+                    className="px-3"
+                  >
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </div>
+                <div className="flex items-center justify-between mt-2">
+                  <Badge variant="secondary" className="text-xs">
+                    Powered by Health360 AI
+                  </Badge>
+                  <span className="text-xs text-muted-foreground">
+                    Press Enter to send
+                  </span>
+                </div>
               </div>
             </div>
           </Card>
