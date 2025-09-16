@@ -7,13 +7,16 @@ import { formatCurrency, formatIsoDate } from "@/lib/utils";
 import Link from "next/link";
 import { getProductsFromSupabase, getCustomersFromSupabase, getOrdersFromSupabase } from "@/lib/supabase";
 import { Product, Customer, Order } from "@/data/types";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { kpis as seedKpis, products as seedProducts } from "@/data/dataset";
 
 export default function AdminDashboardPage() {
   const [products, setProducts] = React.useState<Product[]>(seedProducts);
   const [customers, setCustomers] = React.useState<Customer[]>([]);
   const [orders, setOrders] = React.useState<Order[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = React.useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {

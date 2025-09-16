@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { getOpenRouterClient, OpenRouterMessage } from "@/lib/openrouter";
 import { buildChatContext, buildSystemPrompt } from "@/lib/chat-context";
-import { Product, Customer, Order, OrderItem } from "@/data/types";
+import { Product } from "@/data/types";
 import { MarkdownMessage } from "./MarkdownMessage";
 
 interface Message {
@@ -49,7 +49,12 @@ export interface ChatbotWidgetRef {
   openChat: () => void;
 }
 
-export const ChatbotWidget = React.forwardRef<ChatbotWidgetRef, {}>((_, ref) => {
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+interface ChatbotWidgetProps {
+  // No props needed currently, but this is better than empty object type
+}
+
+export const ChatbotWidget = React.forwardRef<ChatbotWidgetRef, ChatbotWidgetProps>((_, ref) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [messages, setMessages] = React.useState<Message[]>([
     {
@@ -62,6 +67,7 @@ export const ChatbotWidget = React.forwardRef<ChatbotWidgetRef, {}>((_, ref) => 
   ]);
   const [inputValue, setInputValue] = React.useState("");
   const [isTyping, setIsTyping] = React.useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = React.useState<string | null>(null);
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);

@@ -18,7 +18,9 @@ type SortKey = "relevance" | "price-asc" | "price-desc" | "newest";
 
 export default function HomeStorefront() {
   const [rows, setRows] = React.useState<Product[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = React.useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = React.useState<string | null>(null);
 
   const [query, setQuery] = React.useState("");

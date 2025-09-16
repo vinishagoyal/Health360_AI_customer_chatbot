@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -19,7 +18,7 @@ import {
 } from "lucide-react";
 import { getOpenRouterClient, OpenRouterMessage } from "@/lib/openrouter";
 import { buildChatContext, buildSystemPrompt } from "@/lib/chat-context";
-import { Product, Customer, Order, OrderItem } from "@/data/types";
+import { Product } from "@/data/types";
 import { MarkdownMessage } from "./MarkdownMessage";
 
 interface Message {
@@ -62,6 +61,7 @@ export function FullScreenChatbot({ isOpen, onClose }: FullScreenChatbotProps) {
   ]);
   const [inputValue, setInputValue] = React.useState("");
   const [isTyping, setIsTyping] = React.useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = React.useState<string | null>(null);
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);

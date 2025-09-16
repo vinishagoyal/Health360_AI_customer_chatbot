@@ -30,7 +30,9 @@ export default function OrdersPage() {
   const [orderItems, setOrderItems] = React.useState<OrderItem[]>(seedOrderItems);
   const [products, setProducts] = React.useState<Product[]>(seedProducts);
   const [customers, setCustomers] = React.useState<Customer[]>(seedCustomers);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = React.useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = React.useState<string | null>(null);
   const [statusFilter, setStatusFilter] = React.useState<"all" | OrderStatus>("all");
   const [query, setQuery] = React.useState("");

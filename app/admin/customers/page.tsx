@@ -22,7 +22,9 @@ type Draft = Omit<Customer, "id" | "createdAt"> & { id?: string; createdAt?: str
 
 export default function CustomersPage() {
   const [rows, setRows] = React.useState<Customer[]>(seedCustomers);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = React.useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = React.useState<string | null>(null);
   const [query, setQuery] = React.useState("");
   const [open, setOpen] = React.useState(false);

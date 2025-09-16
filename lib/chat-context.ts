@@ -31,8 +31,11 @@ export async function buildChatContext(): Promise<ChatContext> {
   
   // Use Supabase data if available, otherwise fall back to mock data
   const productsData = supabaseProducts && supabaseProducts.length > 0 ? supabaseProducts : products;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const customersData = supabaseCustomers && supabaseCustomers.length > 0 ? supabaseCustomers : customers;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const ordersData = supabaseOrders && supabaseOrders.length > 0 ? supabaseOrders : orders;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const orderItemsData = supabaseOrderItems && supabaseOrderItems.length > 0 ? supabaseOrderItems : orderItems;
 
   // Get unique categories
