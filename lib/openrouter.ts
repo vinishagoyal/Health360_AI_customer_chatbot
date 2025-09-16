@@ -53,8 +53,8 @@ class OpenRouterClient {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${this.apiKey}`,
-          "HTTP-Referer": process.env.SITE_URL || "https://health360-demo.vercel.app",
-          "X-Title": process.env.SITE_NAME || "Health360 Supplements",
+          "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "https://health360-demo.vercel.app",
+          "X-Title": process.env.NEXT_PUBLIC_SITE_NAME || "Health360 Supplements",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(request),
@@ -103,9 +103,9 @@ let openRouterClient: OpenRouterClient | null = null;
 
 export function getOpenRouterClient(): OpenRouterClient {
   if (!openRouterClient) {
-    const apiKey = process.env.OPENROUTER_API_KEY;
+    const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY;
     if (!apiKey) {
-      throw new Error("OpenRouter API key not configured. Please set OPENROUTER_API_KEY environment variable.");
+      throw new Error("OpenRouter API key not configured. Please set NEXT_PUBLIC_OPENROUTER_API_KEY environment variable.");
     }
     openRouterClient = new OpenRouterClient(apiKey);
   }
