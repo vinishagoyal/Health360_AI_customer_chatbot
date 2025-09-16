@@ -2,41 +2,100 @@
 
 import * as React from "react";
 import { ColumnDef } from "@tanstack/react-table";
-import { orders as seedOrders, orderItems, products, customers } from "@/data/dataset";
-import { Order, OrderStatus } from "@/data/types";
+import { orders as seedOrders, orderItems as seedOrderItems, products as seedProducts, customers as seedCustomers } from "@/data/dataset";
+import { Order, OrderStatus, OrderItem, Product, Customer } from "@/data/types";
 import { DataTable } from "@/components/data-table/DataTable";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { formatCurrency, formatIsoDate } from "@/lib/utils";
-import { useLocalStorageState } from "@/lib/storage";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { Eye, Pencil } from "lucide-react";
+import { 
+  getOrdersFromSupabase, 
+  getOrderItemsFromSupabase, 
+  getProductsFromSupabase, 
+  getCustomersFromSupabase,
+  updateOrderInSupabase
+} from "@/lib/supabase";
 
 const STATUS_OPTIONS: OrderStatus[] = ["pending", "paid", "fulfilled", "refunded", "cancelled"];
 
 type OrderWithCounts = Order & { itemCount: number; customerName: string; customerEmail: string };
 
-const productMap = new Map(products.map((p) => [p.id, p]));
-const customerMap = new Map(customers.map((c) => [c.id, c]));
-const itemsByOrder = new Map<string, typeof orderItems>();
-for (const it of orderItems) {
-  const arr = itemsByOrder.get(it.orderId) || [];
-  arr.push(it);
-  itemsByOrder.set(it.orderId, arr);
-}
-
 export default function OrdersPage() {
-  const [rows, setRows] = useLocalStorageState<Order[]>("h360in_orders_v2", seedOrders);
+  const [orders, setOrders] = React.useState<Order[]>(seedOrders);
+  const [orderItems, setOrderItems] = React.useState<OrderItem[]>(seedOrderItems);
+  const [products, setProducts] = React.useState<Product[]>(seedProducts);
+  const [customers, setCustomers] = React.useState<Customer[]>(seedCustomers);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
   const [statusFilter, setStatusFilter] = React.useState<"all" | OrderStatus>("all");
   const [query, setQuery] = React.useState("");
   const [openId, setOpenId] = React.useState<string | null>(null);
   const [editStatus, setEditStatus] = React.useState<OrderStatus | null>(null);
 
+  // Create maps for efficient lookups
+  const productMap = React.useMemo(() => {
+    return new Map(products.map((p) => [p.id, p]));
+  }, [products]);
+
+  const customerMap = React.useMemo(() => {
+    return new Map(customers.map((c) => [c.id, c]));
+  }, [customers]);
+
+  const itemsByOrder = React.useMemo(() => {
+    const map = new Map<string, OrderItem[]>();
+    for (const item of orderItems) {
+      const arr = map.get(item.orderId) || [];
+      arr.push(item);
+      map.set(item.orderId, arr);
+    }
+    return map;
+  }, [orderItems]);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        
+        // Fetch orders from Supabase
+        const fetchedOrders = await getOrdersFromSupabase();
+        if (fetchedOrders) {
+          setOrders(fetchedOrders);
+        }
+        
+        // Fetch order items from Supabase
+        const fetchedOrderItems = await getOrderItemsFromSupabase();
+        if (fetchedOrderItems) {
+          setOrderItems(fetchedOrderItems);
+        }
+        
+        // Fetch products from Supabase
+        const fetchedProducts = await getProductsFromSupabase();
+        if (fetchedProducts) {
+          setProducts(fetchedProducts);
+        }
+        
+        // Fetch customers from Supabase
+        const fetchedCustomers = await getCustomersFromSupabase();
+        if (fetchedCustomers) {
+          setCustomers(fetchedCustomers);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to fetch data");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   const enriched: OrderWithCounts[] = React.useMemo(() => {
-    return rows.map((o) => {
+    return orders.map((o) => {
       const items = itemsByOrder.get(o.id) || [];
       const cust = customerMap.get(o.customerId);
       return {
@@ -46,7 +105,7 @@ export default function OrdersPage() {
         customerEmail: cust?.email || "-",
       };
     });
-  }, [rows]);
+  }, [orders, itemsByOrder, customerMap]);
 
   const filtered = React.useMemo(() => {
     let r = enriched;
@@ -150,13 +209,26 @@ export default function OrdersPage() {
     ];
   }, []);
 
-  const activeOrder = openId ? rows.find((o) => o.id === openId) || null : null;
+  const activeOrder = openId ? orders.find((o) => o.id === openId) || null : null;
   const activeItems = openId ? (itemsByOrder.get(openId) || []) : [];
   const activeCustomer = activeOrder ? customerMap.get(activeOrder.customerId) || null : null;
 
-  function saveStatus() {
+  async function saveStatus() {
     if (!activeOrder || !editStatus) return;
-    setRows(rows.map((o) => (o.id === activeOrder.id ? { ...o, status: editStatus } : o)));
+    
+    try {
+      // Update order status in Supabase
+      const updatedOrder = await updateOrderInSupabase(activeOrder.id, {
+        status: editStatus
+      });
+      
+      if (updatedOrder) {
+        // Update local state with the updated order
+        setOrders(orders.map((o) => (o.id === activeOrder.id ? updatedOrder : o)));
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to update order status");
+    }
   }
 
   return (

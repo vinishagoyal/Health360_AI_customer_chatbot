@@ -1,26 +1,56 @@
 "use client";
 
 import * as React from "react";
-import { products as seedProducts } from "@/data/dataset";
 import { Product } from "@/data/types";
 import { ProductCard } from "@/components/store/ProductCard";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { MessageSquareText, Maximize2 } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
-import { useLocalStorageState } from "@/lib/storage";
 import { CartButton } from "@/components/store/CartSheet";
+import { getProductsFromSupabase } from "@/lib/supabase";
+import { products as seedProducts } from "@/data/dataset";
+import { ChatbotWidget, ChatbotWidgetRef } from "@/components/chatbot/ChatbotWidget";
+import { FullScreenChatbot } from "@/components/chatbot/FullScreenChatbot";
 
 type SortKey = "relevance" | "price-asc" | "price-desc" | "newest";
 
 export default function HomeStorefront() {
-  // Read from the same localStorage key as Admin to reflect any demo edits there.
-  const [rows] = useLocalStorageState<Product[]>("h360in_products_v2", seedProducts);
+  const [rows, setRows] = React.useState<Product[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
   const [query, setQuery] = React.useState("");
   const [category, setCategory] = React.useState<string>("all");
   const [form, setForm] = React.useState<string>("all");
   const [sort, setSort] = React.useState<SortKey>("relevance");
+
+  const chatbotRef = React.useRef<ChatbotWidgetRef>(null);
+  const [isFullScreenChatOpen, setIsFullScreenChatOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    async function fetchProducts() {
+      try {
+        setLoading(true);
+        const products = await getProductsFromSupabase();
+        if (products) {
+          setRows(products);
+        } else {
+          // Fallback to seed data if Supabase fetch returns null
+          setRows(seedProducts);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to fetch products");
+        // Fallback to seed data if Supabase fetch fails
+        setRows(seedProducts);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProducts();
+  }, []);
 
   const categories = React.useMemo(() => {
     const set = new Set(rows.map((p) => p.category));
@@ -108,6 +138,46 @@ export default function HomeStorefront() {
               <Button variant="outline" onClick={() => (window.location.href = "/admin")}>
                 Admin panel
               </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => setIsFullScreenChatOpen(true)}
+                className="gap-2"
+              >
+                <MessageSquareText className="h-4 w-4" />
+                <Maximize2 className="h-3 w-3" />
+                Test Chatbot
+              </Button>
+            </div>
+            <div className="pt-4">
+              <p className="text-sm text-muted-foreground">
+                Try our AI chatbot! Example questions:
+              </p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                <Button variant="outline" size="sm" onClick={async () => {
+                  chatbotRef.current?.openChat();
+                  setTimeout(async () => {
+                    await chatbotRef.current?.sendMessage("What are your best-selling vitamins?");
+                  }, 300);
+                }}>
+                  Best-selling vitamins
+                </Button>
+                <Button variant="outline" size="sm" onClick={async () => {
+                  chatbotRef.current?.openChat();
+                  setTimeout(async () => {
+                    await chatbotRef.current?.sendMessage("Do you have Omega-3 supplements for heart health?");
+                  }, 300);
+                }}>
+                  Omega-3 for heart health
+                </Button>
+                <Button variant="outline" size="sm" onClick={async () => {
+                  chatbotRef.current?.openChat();
+                  setTimeout(async () => {
+                    await chatbotRef.current?.sendMessage("How can I track my recent order?");
+                  }, 300);
+                }}>
+                  Track my order
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -189,6 +259,15 @@ export default function HomeStorefront() {
           )}
         </div>
       </section>
+
+      {/* Chatbot Widget - Hidden when full-screen is open */}
+      {!isFullScreenChatOpen && <ChatbotWidget ref={chatbotRef} />}
+
+      {/* Full-Screen Chatbot */}
+      <FullScreenChatbot 
+        isOpen={isFullScreenChatOpen} 
+        onClose={() => setIsFullScreenChatOpen(false)} 
+      />
     </div>
   );
 }

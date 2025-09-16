@@ -1,8 +1,14 @@
 "use client";
 
 import { products, customers, orders, orderItems } from "@/data/dataset";
-import { Product, Order } from "@/data/types";
+import { Product, Customer, Order, OrderItem } from "@/data/types";
 import { formatCurrency } from "@/lib/utils";
+import { 
+  getProductsFromSupabase, 
+  getCustomersFromSupabase, 
+  getOrdersFromSupabase, 
+  getOrderItemsFromSupabase 
+} from "@/lib/supabase";
 
 export interface ChatContext {
   products: Product[];
@@ -16,19 +22,31 @@ export interface ChatContext {
   };
 }
 
-export function buildChatContext(): ChatContext {
+export async function buildChatContext(): Promise<ChatContext> {
+  // Try to fetch data from Supabase
+  const supabaseProducts = await getProductsFromSupabase();
+  const supabaseCustomers = await getCustomersFromSupabase();
+  const supabaseOrders = await getOrdersFromSupabase();
+  const supabaseOrderItems = await getOrderItemsFromSupabase();
+  
+  // Use Supabase data if available, otherwise fall back to mock data
+  const productsData = supabaseProducts && supabaseProducts.length > 0 ? supabaseProducts : products;
+  const customersData = supabaseCustomers && supabaseCustomers.length > 0 ? supabaseCustomers : customers;
+  const ordersData = supabaseOrders && supabaseOrders.length > 0 ? supabaseOrders : orders;
+  const orderItemsData = supabaseOrderItems && supabaseOrderItems.length > 0 ? supabaseOrderItems : orderItems;
+
   // Get unique categories
-  const categories = [...new Set(products.map(p => p.category))];
+  const categories = [...new Set(productsData.map(p => p.category))];
 
   // Calculate inventory summary by category
   const inventorySummary: Record<string, number> = {};
-  products.forEach(product => {
+  productsData.forEach(product => {
     const category = product.category;
     inventorySummary[category] = (inventorySummary[category] || 0) + product.inventory;
   });
 
   return {
-    products,
+    products: productsData,
     categories,
     inventorySummary,
     businessInfo: {
@@ -82,11 +100,11 @@ RESPONSE GUIDELINES:
 - End conversations politely and offer further assistance`;
 }
 
-export function findRelevantProducts(query: string, limit: number = 5): Product[] {
+export function findRelevantProducts(query: string, productsData: Product[], limit: number = 5): Product[] {
   const lowerQuery = query.toLowerCase();
 
   // Score products based on relevance
-  const scoredProducts = products.map(product => {
+  const scoredProducts = productsData.map(product => {
     let score = 0;
     const productText = `${product.name} ${product.brand} ${product.category} ${product.form}`.toLowerCase();
 
@@ -129,13 +147,22 @@ export function formatProductInfo(product: Product): string {
 ${product.description ? `- Description: ${product.description}` : ''}`;
 }
 
-export function searchOrders(customerEmail?: string, orderId?: string): Order[] {
-  let filteredOrders = orders;
+export function searchOrders(
+  customerEmailOrId?: string, 
+  orderId?: string, 
+  customersData: Customer[] = customers, 
+  ordersData: Order[] = orders
+): Order[] {
+  let filteredOrders = ordersData;
 
-  if (customerEmail) {
-    const customer = customers.find(c => c.email.toLowerCase() === customerEmail.toLowerCase());
+  if (customerEmailOrId) {
+    // Try to find customer by email first
+    const customer = customersData.find(c => c.email.toLowerCase() === customerEmailOrId.toLowerCase());
     if (customer) {
       filteredOrders = filteredOrders.filter(o => o.customerId === customer.id);
+    } else {
+      // If not found by email, try to find by ID
+      filteredOrders = filteredOrders.filter(o => o.customerId === customerEmailOrId);
     }
   }
 
@@ -146,9 +173,13 @@ export function searchOrders(customerEmail?: string, orderId?: string): Order[] 
   return filteredOrders.slice(0, 5); // Limit results
 }
 
-export function formatOrderInfo(order: Order): string {
-  const customer = customers.find(c => c.id === order.customerId);
-  const orderItemsForOrder = orderItems.filter(oi => oi.orderId === order.id);
+export function formatOrderInfo(
+  order: Order, 
+  customersData: Customer[] = customers, 
+  orderItemsData: OrderItem[] = orderItems
+): string {
+  const customer = customersData.find(c => c.id === order.customerId);
+  const orderItemsForOrder = orderItemsData.filter(oi => oi.orderId === order.id);
 
   return `Order ${order.id}
 - Customer: ${customer ? `${customer.firstName} ${customer.lastName}` : 'Unknown'}

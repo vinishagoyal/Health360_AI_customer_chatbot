@@ -18,6 +18,8 @@ import {
 } from "lucide-react";
 import { getOpenRouterClient, OpenRouterMessage } from "@/lib/openrouter";
 import { buildChatContext, buildSystemPrompt } from "@/lib/chat-context";
+import { Product, Customer, Order, OrderItem } from "@/data/types";
+import { MarkdownMessage } from "./MarkdownMessage";
 
 interface Message {
   id: string;
@@ -42,28 +44,12 @@ const sampleResponses = {
   fallback: "I understand you're asking about that. Let me connect you with a human agent who can provide more detailed assistance. In the meantime, is there anything else I can help you with?"
 };
 
-const quickActions: QuickAction[] = [
-  {
-    id: "products",
-    label: "Browse Products",
-    icon: <Bot className="h-4 w-4" />,
-    action: () => {}
-  },
-  {
-    id: "orders",
-    label: "Track Order",
-    icon: <Clock className="h-4 w-4" />,
-    action: () => {}
-  },
-  {
-    id: "support",
-    label: "Get Support",
-    icon: <MessageSquare className="h-4 w-4" />,
-    action: () => {}
-  }
-];
+export interface ChatbotWidgetRef {
+  sendMessage: (message: string) => Promise<void>;
+  openChat: () => void;
+}
 
-export function ChatbotWidget() {
+export const ChatbotWidget = React.forwardRef<ChatbotWidgetRef, {}>((_, ref) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [messages, setMessages] = React.useState<Message[]>([
     {
@@ -81,8 +67,29 @@ export function ChatbotWidget() {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   // Initialize chat context and system prompt
-  const chatContext = React.useMemo(() => buildChatContext(), []);
-  const systemPrompt = React.useMemo(() => buildSystemPrompt(chatContext), [chatContext]);
+  const [chatContext, setChatContext] = React.useState<{
+    products: Product[];
+    categories: string[];
+    inventorySummary: Record<string, number>;
+    businessInfo: {
+      name: string;
+      shipping: string;
+      returns: string;
+      support: string;
+    };
+  } | null>(null);
+  
+  const [systemPrompt, setSystemPrompt] = React.useState<string>("");
+  
+  React.useEffect(() => {
+    const initializeChatContext = async () => {
+      const context = await buildChatContext();
+      setChatContext(context);
+      setSystemPrompt(buildSystemPrompt(context));
+    };
+    
+    initializeChatContext();
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -103,6 +110,11 @@ export function ChatbotWidget() {
   const generateAIResponse = async (userMessage: string): Promise<string> => {
     try {
       setError(null);
+      
+      // If chatContext is not loaded yet, return a fallback message
+      if (!chatContext) {
+        return "I'm still loading product information. Please try again in a moment.";
+      }
 
       // Build conversation history for context
       const conversationHistory: OpenRouterMessage[] = [
@@ -140,6 +152,62 @@ export function ChatbotWidget() {
       }
     }
   };
+
+  // Function to send a message programmatically
+  const sendMessage = async (message: string) => {
+    if (!message.trim()) return;
+
+    const userMessageContent = message.trim();
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      content: userMessageContent,
+      sender: "user",
+      timestamp: new Date(),
+      status: "sent"
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInputValue("");
+    setIsTyping(true);
+
+    try {
+      const aiResponse = await generateAIResponse(userMessageContent);
+
+      const botResponse: Message = {
+        id: (Date.now() + 1).toString(),
+        content: aiResponse,
+        sender: "bot",
+        timestamp: new Date(),
+        status: "delivered"
+      };
+
+      setMessages(prev => [...prev, botResponse]);
+    } catch (error) {
+      console.error("Failed to get AI response:", error);
+
+      const errorResponse: Message = {
+        id: (Date.now() + 1).toString(),
+        content: "I'm sorry, I'm having trouble connecting right now. Please try again in a moment, or contact our support team directly.",
+        sender: "bot",
+        timestamp: new Date(),
+        status: "delivered"
+      };
+
+      setMessages(prev => [...prev, errorResponse]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
+  const openChat = () => {
+    setIsOpen(true);
+  };
+
+  // Expose functions through ref
+  React.useImperativeHandle(ref, () => ({
+    sendMessage,
+    openChat
+  }));
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -193,8 +261,35 @@ export function ChatbotWidget() {
     }
   };
 
+  const quickActions: QuickAction[] = [
+    {
+      id: "products",
+      label: "Browse Products",
+      icon: <Bot className="h-4 w-4" />,
+      action: () => {
+        setInputValue("I'd like to see all available products");
+      }
+    },
+    {
+      id: "orders",
+      label: "Track Order",
+      icon: <Clock className="h-4 w-4" />,
+      action: () => {
+        setInputValue("I'd like to track my order");
+      }
+    },
+    {
+      id: "support",
+      label: "Get Support",
+      icon: <MessageSquare className="h-4 w-4" />,
+      action: () => {
+        setInputValue("I need help with something");
+      }
+    }
+  ];
+
   const handleQuickAction = (action: QuickAction) => {
-    setInputValue(`I'd like to ${action.label.toLowerCase()}`);
+    action.action();
     inputRef.current?.focus();
   };
 
@@ -210,6 +305,7 @@ export function ChatbotWidget() {
           onClick={() => setIsOpen(true)}
           size="lg"
           className="fixed bottom-6 right-6 z-50 rounded-full w-14 h-14 p-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90"
+          data-testid="chatbot-button"
         >
           <MessageSquare className="h-6 w-6" />
         </Button>
@@ -279,7 +375,14 @@ export function ChatbotWidget() {
                               : "bg-muted text-muted-foreground rounded-bl-sm"
                           )}
                         >
-                          {message.content}
+                          {message.sender === "bot" ? (
+                            <MarkdownMessage 
+                              content={message.content} 
+                              className="text-muted-foreground [&_strong]:text-muted-foreground [&_em]:text-muted-foreground [&_p]:text-sm [&_li]:text-xs"
+                            />
+                          ) : (
+                            message.content
+                          )}
                         </div>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <span>{formatTime(message.timestamp)}</span>
@@ -345,6 +448,7 @@ export function ChatbotWidget() {
                     onKeyPress={handleKeyPress}
                     placeholder="Type your message..."
                     className="flex-1"
+                    data-testid="chatbot-input"
                   />
                   <Button
                     onClick={handleSendMessage}
@@ -370,4 +474,6 @@ export function ChatbotWidget() {
       )}
     </>
   );
-}
+});
+
+ChatbotWidget.displayName = "ChatbotWidget";

@@ -203,3 +203,24 @@ health360-admin/
 The easiest way to deploy this Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
 For more details, check the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
+
+## AI Customer Support Chatbot
+
+Health360 includes an AI-powered customer support chatbot to assist customers with their inquiries. The chatbot is powered by OpenRouter and uses the GLM-4.5-air model.
+
+To access the chatbot:
+1. Visit the Health360 website
+2. Click on the chat icon in the bottom right corner
+3. Type your question or select from the quick actions
+4. The AI assistant will provide relevant information about products, orders, and general support
+
+The chatbot can help customers with:
+- Product recommendations based on health goals
+- Order tracking and status updates
+- General information about shipping, returns, and support
+- Instant responses to frequently asked questions
+
+For administrators, the chatbot provides:
+- Real-time access to product catalog
+- Order information lookup
+- Customer support analytics

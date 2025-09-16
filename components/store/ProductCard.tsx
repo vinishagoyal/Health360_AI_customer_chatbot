@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import { Product } from "@/data/types";
 import {
   Card,
@@ -22,6 +21,7 @@ import { formatCurrency } from "@/lib/utils";
 import { useCart } from "@/lib/cart";
 import { toast } from "sonner";
 import { Eye, ShoppingCart, Star } from "lucide-react";
+import { CategoryIcon } from "@/lib/product-icons";
 
 function Stars({ value = 5 }: { value?: number }) {
   const v = Math.round((value ?? 0) * 2) / 2; // round to .5
@@ -47,21 +47,15 @@ export function ProductCard({ product }: { product: Product }) {
     });
   }
 
-  const img = product.imageUrl ?? "/next.svg";
-
   return (
     <>
       <Card className="h-full flex flex-col group">
         <CardHeader className="pb-2">
           <div className="relative w-full overflow-hidden rounded-md border bg-muted">
-            <div className="relative aspect-[4/3] w-full">
-              <Image
-                src={img}
-                alt={product.name}
-                fill
-                sizes="(max-width: 768px) 100vw, 25vw"
-                className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                priority={false}
+            <div className="relative aspect-[4/3] w-full transition-transform duration-300 group-hover:scale-[1.03]">
+              <CategoryIcon 
+                category={product.category} 
+                className="h-16 w-16"
               />
             </div>
           </div>
@@ -119,12 +113,9 @@ export function ProductCard({ product }: { product: Product }) {
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="relative overflow-hidden rounded-md border bg-muted">
               <div className="relative aspect-[4/3] w-full">
-                <Image
-                  src={img}
-                  alt={product.name}
-                  fill
-                  sizes="50vw"
-                  className="object-cover"
+                <CategoryIcon 
+                  category={product.category} 
+                  className="h-24 w-24"
                 />
               </div>
             </div>

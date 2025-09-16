@@ -10,13 +10,20 @@ import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { formatIsoDate } from "@/lib/utils";
-import { useLocalStorageState } from "@/lib/storage";
 import { Plus, Pencil, Trash2 } from "lucide-react";
+import { 
+  getCustomersFromSupabase, 
+  createCustomerInSupabase, 
+  updateCustomerInSupabase, 
+  deleteCustomerFromSupabase 
+} from "@/lib/supabase";
 
 type Draft = Omit<Customer, "id" | "createdAt"> & { id?: string; createdAt?: string };
 
 export default function CustomersPage() {
-  const [rows, setRows, resetRows] = useLocalStorageState<Customer[]>("h360in_customers_v2", seedCustomers);
+  const [rows, setRows] = React.useState<Customer[]>(seedCustomers);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
   const [query, setQuery] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [editing, setEditing] = React.useState<Customer | null>(null);
@@ -28,6 +35,29 @@ export default function CustomersPage() {
     city: "",
     country: "",
   });
+
+  React.useEffect(() => {
+    async function fetchCustomers() {
+      try {
+        setLoading(true);
+        const customers = await getCustomersFromSupabase();
+        if (customers) {
+          setRows(customers);
+        } else {
+          // Fallback to seed data if Supabase fetch returns null
+          setRows(seedCustomers);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to fetch customers");
+        // Fallback to seed data if Supabase fetch fails
+        setRows(seedCustomers);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchCustomers();
+  }, []);
 
   const filtered = React.useMemo(() => {
     if (!query) return rows;
@@ -101,8 +131,17 @@ export default function CustomersPage() {
               <Button
                 size="sm"
                 variant="destructive"
-                onClick={() => {
-                  setRows(rows.filter((r) => r.id !== c.id));
+                onClick={async () => {
+                  try {
+                    const success = await deleteCustomerFromSupabase(c.id);
+                    if (success) {
+                      setRows(rows.filter((r) => r.id !== c.id));
+                    } else {
+                      setError("Failed to delete customer");
+                    }
+                  } catch (err) {
+                    setError(err instanceof Error ? err.message : "Failed to delete customer");
+                  }
                 }}
               >
                 <Trash2 className="h-4 w-4" />
@@ -127,41 +166,43 @@ export default function CustomersPage() {
     setOpen(true);
   }
 
-  function saveDraft() {
+  async function saveDraft() {
     if (!draft.firstName || !draft.lastName || !draft.email) return;
 
-    if (editing) {
-      setRows(
-        rows.map((r) =>
-          r.id === editing.id
-            ? {
-                ...r,
-                firstName: draft.firstName,
-                lastName: draft.lastName,
-                email: draft.email,
-                phone: draft.phone,
-                city: draft.city,
-                country: draft.country,
-              }
-            : r
-        )
-      );
-    } else {
-      setRows([
-        {
-          id: crypto.randomUUID(),
-          createdAt: new Date().toISOString(),
-          firstName: draft.firstName,
-          lastName: draft.lastName,
+    try {
+      if (editing) {
+        // Update existing customer
+        const updatedCustomer = await updateCustomerInSupabase(editing.id, {
+          first_name: draft.firstName,
+          last_name: draft.lastName,
           email: draft.email,
           phone: draft.phone,
           city: draft.city,
           country: draft.country,
-        },
-        ...rows,
-      ]);
+        });
+
+        if (updatedCustomer) {
+          setRows(rows.map((r) => (r.id === editing.id ? updatedCustomer : r)));
+        }
+      } else {
+        // Create new customer
+        const newCustomer = await createCustomerInSupabase({
+          first_name: draft.firstName,
+          last_name: draft.lastName,
+          email: draft.email,
+          phone: draft.phone,
+          city: draft.city,
+          country: draft.country,
+        });
+
+        if (newCustomer) {
+          setRows([newCustomer, ...rows]);
+        }
+      }
+      setOpen(false);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to save customer");
     }
-    setOpen(false);
   }
 
   return (
@@ -179,7 +220,6 @@ export default function CustomersPage() {
             <Plus className="mr-2 h-4 w-4" />
             New
           </Button>
-          <Button variant="outline" onClick={() => resetRows()}>Reset demo data</Button>
         </div>
       </div>
 

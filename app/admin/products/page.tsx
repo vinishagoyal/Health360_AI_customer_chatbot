@@ -12,8 +12,13 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { formatCurrency, formatIsoDate } from "@/lib/utils";
-import { useLocalStorageState } from "@/lib/storage";
 import { Plus, Pencil, Trash2 } from "lucide-react";
+import { 
+  getProductsFromSupabase, 
+  createProductInSupabase, 
+  updateProductInSupabase, 
+  deleteProductFromSupabase 
+} from "@/lib/supabase";
 
 const CATEGORY_OPTIONS: ProductCategory[] = ["Vitamins", "Minerals", "Herbal", "Probiotics", "Omega-3", "Protein"];
 const FORM_OPTIONS: ProductForm[] = ["Capsule", "Tablet", "Powder", "Liquid", "Gummy"];
@@ -22,7 +27,9 @@ const STATUS_OPTIONS: ProductStatus[] = ["active", "draft", "discontinued"];
 type Draft = Omit<Product, "id" | "createdAt"> & { id?: string; createdAt?: string };
 
 export default function ProductsPage() {
-  const [rows, setRows, resetRows] = useLocalStorageState<Product[]>("h360in_products_v2", seedProducts);
+  const [rows, setRows] = React.useState<Product[]>(seedProducts);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
   const [query, setQuery] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [editing, setEditing] = React.useState<Product | null>(null);
@@ -36,6 +43,29 @@ export default function ProductsPage() {
     form: "Capsule",
     status: "active",
   });
+
+  React.useEffect(() => {
+    async function fetchProducts() {
+      try {
+        setLoading(true);
+        const products = await getProductsFromSupabase();
+        if (products) {
+          setRows(products);
+        } else {
+          // Fallback to seed data if Supabase fetch returns null
+          setRows(seedProducts);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to fetch products");
+        // Fallback to seed data if Supabase fetch fails
+        setRows(seedProducts);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProducts();
+  }, []);
 
   const filtered = React.useMemo(() => {
     if (!query) return rows;
@@ -115,8 +145,17 @@ export default function ProductsPage() {
               <Button
                 size="sm"
                 variant="destructive"
-                onClick={() => {
-                  setRows(rows.filter((r) => r.id !== p.id));
+                onClick={async () => {
+                  try {
+                    const success = await deleteProductFromSupabase(p.id);
+                    if (success) {
+                      setRows(rows.filter((r) => r.id !== p.id));
+                    } else {
+                      setError("Failed to delete product");
+                    }
+                  } catch (err) {
+                    setError(err instanceof Error ? err.message : "Failed to delete product");
+                  }
                 }}
               >
                 <Trash2 className="h-4 w-4" />
@@ -143,34 +182,15 @@ export default function ProductsPage() {
     setOpen(true);
   }
 
-  function saveDraft() {
+  async function saveDraft() {
     // minimal validation
     if (!draft.name || !draft.sku || !draft.brand) return;
     if (draft.price < 0 || draft.inventory < 0) return;
 
-    if (editing) {
-      setRows(
-        rows.map((r) =>
-          r.id === editing.id
-            ? {
-                ...r,
-                name: draft.name,
-                sku: draft.sku,
-                brand: draft.brand,
-                price: Number(draft.price),
-                inventory: Number(draft.inventory),
-                category: draft.category,
-                form: draft.form,
-                status: draft.status,
-              }
-            : r
-        )
-      );
-    } else {
-      setRows([
-        {
-          id: crypto.randomUUID(),
-          createdAt: new Date().toISOString(),
+    try {
+      if (editing) {
+        // Update existing product
+        const updatedProduct = await updateProductInSupabase(editing.id, {
           name: draft.name,
           sku: draft.sku,
           brand: draft.brand,
@@ -179,11 +199,32 @@ export default function ProductsPage() {
           category: draft.category,
           form: draft.form,
           status: draft.status,
-        },
-        ...rows,
-      ]);
+        });
+
+        if (updatedProduct) {
+          setRows(rows.map((r) => (r.id === editing.id ? updatedProduct : r)));
+        }
+      } else {
+        // Create new product
+        const newProduct = await createProductInSupabase({
+          name: draft.name,
+          sku: draft.sku,
+          brand: draft.brand,
+          price: Number(draft.price),
+          inventory: Number(draft.inventory),
+          category: draft.category,
+          form: draft.form,
+          status: draft.status,
+        });
+
+        if (newProduct) {
+          setRows([newProduct, ...rows]);
+        }
+      }
+      setOpen(false);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to save product");
     }
-    setOpen(false);
   }
 
   return (
@@ -201,7 +242,6 @@ export default function ProductsPage() {
             <Plus className="mr-2 h-4 w-4" />
             New
           </Button>
-          <Button variant="outline" onClick={() => resetRows()}>Reset demo data</Button>
         </div>
       </div>
 
