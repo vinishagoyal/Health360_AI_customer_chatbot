@@ -6,7 +6,7 @@ interface OpenRouterMessage {
 }
 
 interface OpenRouterRequest {
-  model: "deepseek/deepseek-chat-v3.1:free";
+  model: "openrouter/free";
   messages: OpenRouterMessage[];
   temperature?: number;
   max_tokens?: number;
@@ -43,7 +43,7 @@ class OpenRouterClient {
   }): Promise<string> {
     try {
       const request: OpenRouterRequest = {
-        model: "deepseek/deepseek-chat-v3.1:free",
+        model: "openrouter/free",
         messages,
         temperature: options?.temperature ?? 0.7,
         max_tokens: options?.maxTokens ?? 1000,

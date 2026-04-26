@@ -206,7 +206,7 @@ For more details, check the [Next.js deployment documentation](https://nextjs.or
 
 ## AI Customer Support Chatbot
 
-Health360 includes an AI-powered customer support chatbot to assist customers with their inquiries. The chatbot is powered by OpenRouter and uses the GLM-4.5-air model.
+Health360 includes an AI-powered customer support chatbot to assist customers with their inquiries. The chatbot is powered by OpenRouter and uses the `openrouter/free` model ID.
 
 To access the chatbot:
 1. Visit the Health360 website
