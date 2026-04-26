@@ -54,16 +54,16 @@ export type SupabaseOrderItem = {
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Check if Supabase URL and anon key are provided
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Supabase URL and anon key are required. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY environment variables.');
-}
-
-// Create Supabase client
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Create Supabase client only when configured. Vercel prerenders pages during
+// build, so this module must not throw if environment variables are missing.
+export const supabase = supabaseUrl && supabaseAnonKey
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
 
 // Function to fetch products from Supabase
 export async function getProductsFromSupabase() {
+  if (!supabase) return null;
+
   try {
     const { data, error } = await supabase
       .from('products')
@@ -100,6 +100,8 @@ export async function getProductsFromSupabase() {
 
 // Function to fetch customers from Supabase
 export async function getCustomersFromSupabase() {
+  if (!supabase) return null;
+
   try {
     const { data, error } = await supabase
       .from('customers')
@@ -130,6 +132,8 @@ export async function getCustomersFromSupabase() {
 
 // Function to create a new customer in Supabase
 export async function createCustomerInSupabase(customer: Omit<SupabaseCustomer, 'id' | 'created_at'>) {
+  if (!supabase) return null;
+
   try {
     const { data, error } = await supabase
       .from('customers')
@@ -167,6 +171,8 @@ export async function createCustomerInSupabase(customer: Omit<SupabaseCustomer, 
 
 // Function to update a customer in Supabase
 export async function updateCustomerInSupabase(id: string, customer: Partial<Omit<SupabaseCustomer, 'id' | 'created_at'>>) {
+  if (!supabase) return null;
+
   try {
     const { data, error } = await supabase
       .from('customers')
@@ -205,6 +211,8 @@ export async function updateCustomerInSupabase(id: string, customer: Partial<Omi
 
 // Function to delete a customer from Supabase
 export async function deleteCustomerFromSupabase(id: string) {
+  if (!supabase) return false;
+
   try {
     const { error } = await supabase
       .from('customers')
@@ -225,6 +233,8 @@ export async function deleteCustomerFromSupabase(id: string) {
 
 // Function to fetch orders from Supabase
 export async function getOrdersFromSupabase() {
+  if (!supabase) return null;
+
   try {
     const { data, error } = await supabase
       .from('orders')
@@ -254,6 +264,8 @@ export async function getOrdersFromSupabase() {
 
 // Function to fetch order items from Supabase
 export async function getOrderItemsFromSupabase() {
+  if (!supabase) return null;
+
   try {
     const { data, error } = await supabase
       .from('order_items')
@@ -282,6 +294,8 @@ export async function getOrderItemsFromSupabase() {
 
 // Function to update an order in Supabase
 export async function updateOrderInSupabase(id: string, order: Partial<Omit<SupabaseOrder, 'id' | 'created_at'>>) {
+  if (!supabase) return null;
+
   try {
     const { data, error } = await supabase
       .from('orders')
@@ -318,6 +332,8 @@ export async function updateOrderInSupabase(id: string, order: Partial<Omit<Supa
 
 // Function to create a new product in Supabase
 export async function createProductInSupabase(product: Omit<SupabaseProduct, 'id' | 'created_at'>) {
+  if (!supabase) return null;
+
   try {
     const { data, error } = await supabase
       .from('products')
@@ -367,6 +383,8 @@ export async function createProductInSupabase(product: Omit<SupabaseProduct, 'id
 
 // Function to update a product in Supabase
 export async function updateProductInSupabase(id: string, product: Partial<Omit<SupabaseProduct, 'id' | 'created_at'>>) {
+  if (!supabase) return null;
+
   try {
     const { data, error } = await supabase
       .from('products')
@@ -417,6 +435,8 @@ export async function updateProductInSupabase(id: string, product: Partial<Omit<
 
 // Function to delete a product from Supabase
 export async function deleteProductFromSupabase(id: string) {
+  if (!supabase) return false;
+
   try {
     const { error } = await supabase
       .from('products')
