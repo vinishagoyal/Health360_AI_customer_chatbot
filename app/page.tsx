@@ -16,6 +16,15 @@ import { FullScreenChatbot } from "@/components/chatbot/FullScreenChatbot";
 
 type SortKey = "relevance" | "price-asc" | "price-desc" | "newest";
 
+function shuffleProducts(products: Product[]) {
+  const shuffled = [...products];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export default function HomeStorefront() {
   const [rows, setRows] = React.useState<Product[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -37,15 +46,15 @@ export default function HomeStorefront() {
         setLoading(true);
         const products = await getProductsFromSupabase();
         if (products) {
-          setRows(products);
+          setRows(shuffleProducts(products));
         } else {
           // Fallback to seed data if Supabase fetch returns null
-          setRows(seedProducts);
+          setRows(shuffleProducts(seedProducts));
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to fetch products");
         // Fallback to seed data if Supabase fetch fails
-        setRows(seedProducts);
+        setRows(shuffleProducts(seedProducts));
       } finally {
         setLoading(false);
       }
@@ -96,7 +105,7 @@ export default function HomeStorefront() {
         break;
       case "relevance":
       default:
-        // Keep original seed order (acts as "relevance" for demo)
+        // Keep the mixed order from initial load.
         break;
     }
 

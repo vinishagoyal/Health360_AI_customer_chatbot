@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { Product } from "@/data/types";
 import {
   Card,
@@ -21,7 +22,7 @@ import { formatCurrency } from "@/lib/utils";
 import { useCart } from "@/lib/cart";
 import { toast } from "sonner";
 import { Eye, ShoppingCart, Star } from "lucide-react";
-import { CategoryIcon } from "@/lib/product-icons";
+import { CategoryIcon, getCategoryImageSrc } from "@/lib/product-icons";
 
 function Stars({ value = 5 }: { value?: number }) {
   const v = Math.round((value ?? 0) * 2) / 2; // round to .5
@@ -39,6 +40,7 @@ export function ProductCard({ product }: { product: Product }) {
   const add = useCart((s) => s.add);
   const lowStock = (product.inventory ?? 0) <= 5;
   const [open, setOpen] = React.useState(false);
+  const categoryImageSrc = getCategoryImageSrc(product.category);
 
   function onAdd(qty = 1) {
     add(product, qty);
@@ -53,10 +55,21 @@ export function ProductCard({ product }: { product: Product }) {
         <CardHeader className="pb-2">
           <div className="relative w-full overflow-hidden rounded-md border bg-muted">
             <div className="relative aspect-[4/3] w-full transition-transform duration-300 group-hover:scale-[1.03]">
-              <CategoryIcon 
-                category={product.category} 
-                className="h-16 w-16"
-              />
+              {categoryImageSrc ? (
+                <Image
+                  src={categoryImageSrc}
+                  alt={`${product.category} supplements`}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover"
+                  priority={false}
+                />
+              ) : (
+                <CategoryIcon 
+                  category={product.category} 
+                  className="h-16 w-16"
+                />
+              )}
             </div>
           </div>
           <CardTitle className="mt-2 text-base leading-tight line-clamp-2">
@@ -113,10 +126,20 @@ export function ProductCard({ product }: { product: Product }) {
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="relative overflow-hidden rounded-md border bg-muted">
               <div className="relative aspect-[4/3] w-full">
-                <CategoryIcon 
-                  category={product.category} 
-                  className="h-24 w-24"
-                />
+                {categoryImageSrc ? (
+                  <Image
+                    src={categoryImageSrc}
+                    alt={`${product.category} supplements`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <CategoryIcon 
+                    category={product.category} 
+                    className="h-24 w-24"
+                  />
+                )}
               </div>
             </div>
             <div className="space-y-3">
