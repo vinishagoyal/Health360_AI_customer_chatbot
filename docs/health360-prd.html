@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Health360 AI Customer Support System - PRD</title>
+    <style>
+      @page {
+        margin: 22mm 18mm;
+      }
+
+      body {
+        color: #17202a;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-size: 11px;
+        line-height: 1.45;
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        color: #0f172a;
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 28px;
+        letter-spacing: -0.02em;
+      }
+
+      h2 {
+        border-bottom: 1px solid #d7dee8;
+        font-size: 17px;
+        margin-top: 26px;
+        padding-bottom: 6px;
+      }
+
+      h3 {
+        font-size: 13px;
+        margin-top: 14px;
+      }
+
+      p {
+        margin: 7px 0;
+      }
+
+      ul {
+        margin: 6px 0 8px 18px;
+        padding: 0;
+      }
+
+      li {
+        margin: 3px 0;
+      }
+
+      table {
+        border-collapse: collapse;
+        margin: 10px 0 16px;
+        page-break-inside: avoid;
+        width: 100%;
+      }
+
+      th,
+      td {
+        border: 1px solid #d7dee8;
+        padding: 6px 7px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: #f1f5f9;
+        color: #0f172a;
+        font-weight: 700;
+      }
+
+      .cover {
+        border-bottom: 4px solid #14b8a6;
+        margin-bottom: 24px;
+        padding: 34px 0 24px;
+      }
+
+      .eyebrow {
+        color: #0f766e;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+      }
+
+      .subtitle {
+        color: #475569;
+        font-size: 14px;
+        margin-top: 10px;
+        max-width: 720px;
+      }
+
+      .meta {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 24px;
+      }
+
+      .meta div,
+      .callout {
+        background: #f8fafc;
+        border: 1px solid #d7dee8;
+        border-radius: 8px;
+        padding: 10px 12px;
+      }
+
+      .label {
+        color: #64748b;
+        display: block;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .value {
+        display: block;
+        font-size: 12px;
+        font-weight: 650;
+        margin-top: 2px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 10px 0 14px;
+      }
+
+      .card {
+        border: 1px solid #d7dee8;
+        border-radius: 8px;
+        padding: 10px 12px;
+      }
+
+      .card strong {
+        color: #0f172a;
+        display: block;
+        font-size: 12px;
+        margin-bottom: 3px;
+      }
+
+      .tag {
+        border-radius: 999px;
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 700;
+        margin-right: 5px;
+        padding: 2px 7px;
+      }
+
+      .critical {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      .high {
+        background: #ffedd5;
+        color: #9a3412;
+      }
+
+      .medium {
+        background: #dbeafe;
+        color: #1e40af;
+      }
+
+      .low {
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      .page-break {
+        page-break-before: always;
+      }
+
+      .small {
+        color: #64748b;
+        font-size: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="cover">
+      <div class="eyebrow">Product Requirements Document</div>
+      <h1>Health360 AI Customer Query and Complaint Deflection System</h1>
+      <p class="subtitle">
+        A website-based AI support assistant and admin dashboard for Health360 Health Supplements,
+        designed to reduce repetitive support load, answer product and order queries, escalate
+        risky conversations, and provide operational visibility to support leadership.
+      </p>
+      <div class="meta">
+        <div><span class="label">Prepared For</span><span class="value">Health360 Health Supplements Leadership</span></div>
+        <div><span class="label">Prepared By</span><span class="value">Vinisha Goyal</span></div>
+        <div><span class="label">Document Type</span><span class="value">PRD with Functional and Non-Functional Requirements</span></div>
+        <div><span class="label">Date</span><span class="value">May 6, 2026</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>1. Executive Summary</h2>
+      <p>
+        Health360 receives a growing volume of customer conversations across product questions,
+        order support, delivery concerns, returns, and complaints. The support team has limited
+        human capacity, so repetitive questions slow down response times and create inconsistent
+        answers. This is especially risky for a health supplements business because product
+        guidance must be accurate, controlled, and compliant.
+      </p>
+      <p>
+        The proposed solution is an AI-powered customer support layer on the Health360 website,
+        backed by Health360 product data, policy content, complaint routing rules, and an admin
+        dashboard. The system should deflect routine queries, classify conversations, provide safe
+        product information, escalate uncertain or high-risk cases, and give administrators useful
+        metrics for operations and continuous improvement.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Business Problem</h2>
+      <div class="callout">
+        <strong>Problem Statement:</strong>
+        Health360's support team cannot efficiently handle the rising volume of repetitive product,
+        order, and complaint queries while maintaining fast SLAs, consistent answers, and compliant
+        supplement communication.
+      </div>
+      <h3>Key Pain Points</h3>
+      <ul>
+        <li>High query volume exceeds available support capacity.</li>
+        <li>Customers repeat common questions about dosage, ingredients, stock, delivery, returns, and order status.</li>
+        <li>No scalable self-service assistant is available on the website.</li>
+        <li>Manual responses create inconsistent brand tone and product accuracy.</li>
+        <li>Health supplement communication has compliance risk if benefits are overstated.</li>
+        <li>Leadership lacks visibility into query patterns, peak hours, and unresolved issues.</li>
+        <li>Escalations are not consistently tagged by urgency, category, or customer intent.</li>
+      </ul>
+      <h3>Business Impact</h3>
+      <table>
+        <thead>
+          <tr><th>Impact Area</th><th>Current Risk</th><th>Desired Outcome</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Support workload</td><td>Agents spend time on repeated questions.</td><td>40-60% of routine questions deflected by the bot.</td></tr>
+          <tr><td>Customer experience</td><td>Delayed first replies and inconsistent answers.</td><td>Instant first response for common questions.</td></tr>
+          <tr><td>Compliance</td><td>Risk of inaccurate supplement claims.</td><td>Approved, constrained answers with escalation for medical questions.</td></tr>
+          <tr><td>Operations</td><td>Limited visibility into volume, timing, and topic trends.</td><td>Dashboard with query, category, and escalation analytics.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>3. Proposed Solution</h2>
+      <p>
+        Build a Health360 AI support assistant embedded on the Health360 website. The assistant
+        answers approved product and policy questions, recommends relevant supplements based on
+        user goals, handles order-support prompts, and escalates uncertain or sensitive issues to a
+        human support process. The system includes a storefront experience, AI chatbot widget,
+        full-screen chatbot testing mode, and admin dashboard for products, customers, and orders.
+      </p>
+      <div class="grid">
+        <div class="card">
+          <strong>Customer-Facing Chatbot</strong>
+          Website widget that handles product, order, shipping, returns, and general support questions.
+        </div>
+        <div class="card">
+          <strong>Knowledge-Based Responses</strong>
+          Uses Health360 catalog, inventory, policies, and business information to ground answers.
+        </div>
+        <div class="card">
+          <strong>Admin Dashboard</strong>
+          Tracks products, customers, orders, low stock, revenue, and support-related operating signals.
+        </div>
+        <div class="card">
+          <strong>Escalation Layer</strong>
+          Routes low-confidence, complaint, medical, or "human agent" requests for manual handling.
+        </div>
+      </div>
+      <h3>Solution Principles</h3>
+      <ul>
+        <li>Give fast, concise, helpful responses for routine queries.</li>
+        <li>Use Health360-approved product and policy data as the source of truth.</li>
+        <li>Avoid diagnosis, treatment promises, or unsupported medical claims.</li>
+        <li>Escalate when the query is uncertain, risky, emotional, or outside approved content.</li>
+        <li>Make the system measurable through deflection, escalation, response-time, and CSAT metrics.</li>
+      </ul>
+    </section>
+
+    <section class="page-break">
+      <h2>4. Goals, Success Metrics, and KPIs</h2>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Goal</th><th>Target Metric</th><th>Measurement Cadence</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>G-01</td><td>Reduce repetitive tickets reaching agents.</td><td>40-60% deflection within 3 months.</td><td>Weekly</td></tr>
+          <tr><td>G-02</td><td>Improve first response time.</td><td>Bot response under 2 minutes; ideal under 3 seconds.</td><td>Daily</td></tr>
+          <tr><td>G-03</td><td>Maintain safe supplement communication.</td><td>Zero known regulatory violations from bot content.</td><td>Monthly review</td></tr>
+          <tr><td>G-04</td><td>Increase customer satisfaction.</td><td>CSAT at or above 4.2 out of 5 for bot interactions.</td><td>Bi-weekly</td></tr>
+          <tr><td>G-05</td><td>Improve operational visibility.</td><td>Dashboard available for volume, categories, orders, and low-stock signals.</td><td>Real time / weekly report</td></tr>
+          <tr><td>G-06</td><td>Lower human support load.</td><td>At least 40% reduction in repetitive ticket handling effort.</td><td>Monthly</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>5. Scope</h2>
+      <h3>In Scope</h3>
+      <ul>
+        <li>Website chatbot widget and full-screen chatbot testing experience.</li>
+        <li>Health360 product catalog browsing, filtering, and product card experience.</li>
+        <li>Admin product, customer, and order management pages.</li>
+        <li>AI responses grounded in product catalog, category, inventory, business policies, and support guidance.</li>
+        <li>Basic order support flow, including guidance for tracking and human escalation.</li>
+        <li>Query classification by broad intent: product query, order support, complaint, general support, medical/risk.</li>
+        <li>Escalation guidance when confidence is low or user requests a human agent.</li>
+        <li>Dashboard metrics for products, customers, orders, revenue, and low stock.</li>
+      </ul>
+      <h3>Out of Scope for Phase 1</h3>
+      <ul>
+        <li>WhatsApp Business API automation.</li>
+        <li>Email parsing and auto-response workflows.</li>
+        <li>Voice bot, IVR, or call center integration.</li>
+        <li>CRM, ERP, logistics, payment gateway, or warehouse integrations.</li>
+        <li>Mobile app integration.</li>
+        <li>Multilingual support beyond English.</li>
+        <li>Automated refund approval or medical advice.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Users and Stakeholders</h2>
+      <table>
+        <thead>
+          <tr><th>User / Stakeholder</th><th>Needs</th><th>How the Product Serves Them</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Customer</td><td>Fast answers about supplements, delivery, returns, and orders.</td><td>Website chatbot and product catalog.</td></tr>
+          <tr><td>Support Agent</td><td>Fewer repetitive tickets and clearer escalations.</td><td>Deflection, category tagging, and escalation prompts.</td></tr>
+          <tr><td>Support Lead</td><td>Visibility into query trends, volume, and unresolved issues.</td><td>Admin dashboard and future reports.</td></tr>
+          <tr><td>Compliance Officer</td><td>Safe, approved supplement claims.</td><td>Guardrails, restricted response policy, escalation for medical questions.</td></tr>
+          <tr><td>Operations / Inventory</td><td>Awareness of product and stock patterns.</td><td>Product inventory display and low-stock dashboard.</td></tr>
+          <tr><td>Leadership</td><td>Lower cost, better service, measurable ROI.</td><td>Deflection and performance KPIs.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="page-break">
+      <h2>7. Functional Requirements</h2>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Requirement</th><th>Description</th><th>Priority</th><th>Acceptance Criteria</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>FR-01</td><td>Website chatbot widget</td><td>Provide a floating chatbot on the storefront.</td><td><span class="tag critical">Critical</span></td><td>User can open, type, send, and receive a response.</td></tr>
+          <tr><td>FR-02</td><td>Full-screen chatbot</td><td>Provide an expanded testing/interaction mode.</td><td><span class="tag high">High</span></td><td>User can open full-screen chat and close with UI or Escape.</td></tr>
+          <tr><td>FR-03</td><td>Product-aware answers</td><td>Bot must use Health360 products, categories, prices, and inventory context.</td><td><span class="tag critical">Critical</span></td><td>Bot can answer catalog questions using available product data.</td></tr>
+          <tr><td>FR-04</td><td>Product recommendations</td><td>Recommend relevant supplements for stated goals without medical claims.</td><td><span class="tag high">High</span></td><td>Recommendations include product names, categories, and safe disclaimers when needed.</td></tr>
+          <tr><td>FR-05</td><td>Order support guidance</td><td>Help users understand tracking, delivery, returns, and order support steps.</td><td><span class="tag high">High</span></td><td>Bot asks for order ID/email and routes complex cases to support.</td></tr>
+          <tr><td>FR-06</td><td>Query classification</td><td>Classify messages into product query, complaint, order support, general, or risk/medical.</td><td><span class="tag high">High</span></td><td>Each conversation has an inferred category for analytics and escalation.</td></tr>
+          <tr><td>FR-07</td><td>Complaint escalation</td><td>Escalate complaints, angry customers, refund disputes, safety concerns, or legal threats.</td><td><span class="tag critical">Critical</span></td><td>Bot avoids final resolution promises and directs to human support.</td></tr>
+          <tr><td>FR-08</td><td>Medical guardrails</td><td>Prevent diagnosis, treatment, disease-cure claims, and unsafe dosage advice.</td><td><span class="tag critical">Critical</span></td><td>Medical or risky questions are answered with general information and professional-care guidance.</td></tr>
+          <tr><td>FR-09</td><td>Admin dashboard</td><td>Show key operating metrics: products, customers, orders, revenue, and low stock.</td><td><span class="tag high">High</span></td><td>Dashboard renders current metrics from Supabase or fallback data.</td></tr>
+          <tr><td>FR-10</td><td>Product management</td><td>Allow admins to create, edit, search, and delete products.</td><td><span class="tag high">High</span></td><td>Product table supports CRUD and CSV export.</td></tr>
+          <tr><td>FR-11</td><td>Customer management</td><td>Allow admins to create, edit, search, and delete customers.</td><td><span class="tag medium">Medium</span></td><td>Customer table supports CRUD and CSV export.</td></tr>
+          <tr><td>FR-12</td><td>Order management</td><td>Allow admins to view orders, inspect order items, and update order status.</td><td><span class="tag high">High</span></td><td>Order detail sheet shows customer, items, totals, and status controls.</td></tr>
+          <tr><td>FR-13</td><td>Storefront catalog</td><td>Display products with category images, pricing, ratings, description, and SKU.</td><td><span class="tag high">High</span></td><td>User can browse product cards and open quick view.</td></tr>
+          <tr><td>FR-14</td><td>Catalog filters</td><td>Filter by search query, category, form, and sort order.</td><td><span class="tag medium">Medium</span></td><td>Filter controls update result set without page reload.</td></tr>
+          <tr><td>FR-15</td><td>Cart</td><td>Allow users to add, remove, increment, decrement, and clear cart items.</td><td><span class="tag medium">Medium</span></td><td>Cart persists locally and calculates subtotal, GST, and total.</td></tr>
+          <tr><td>FR-16</td><td>Fallback data</td><td>Use local seed data if Supabase is unavailable or not configured.</td><td><span class="tag high">High</span></td><td>Storefront and admin pages remain usable in demo mode.</td></tr>
+          <tr><td>FR-17</td><td>Reporting export</td><td>Export admin table data to CSV.</td><td><span class="tag medium">Medium</span></td><td>CSV export downloads current table rows.</td></tr>
+          <tr><td>FR-18</td><td>Brand presentation</td><td>Use Health360 branding, supplement-specific product images, and professional UI styling.</td><td><span class="tag medium">Medium</span></td><td>Category cards show Health360-branded supplement imagery.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="page-break">
+      <h2>8. Non-Functional Requirements</h2>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Category</th><th>Requirement</th><th>Target / Acceptance Criteria</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>NFR-01</td><td>Availability</td><td>The customer-facing chatbot and storefront should be available during business-critical hours.</td><td>99.5% monthly uptime target after production launch.</td><td><span class="tag high">High</span></td></tr>
+          <tr><td>NFR-02</td><td>Performance</td><td>Chatbot responses should feel instant for users.</td><td>UI acknowledgement under 1 second; AI response target under 3 seconds for normal queries.</td><td><span class="tag high">High</span></td></tr>
+          <tr><td>NFR-03</td><td>Scalability</td><td>System should support growth without major redesign.</td><td>Architecture should support up to 10,000 queries/day with horizontal scaling.</td><td><span class="tag high">High</span></td></tr>
+          <tr><td>NFR-04</td><td>Security</td><td>API keys and privileged database operations must not be exposed to browsers in production.</td><td>AI and admin-sensitive operations run through server-side endpoints or protected roles.</td><td><span class="tag critical">Critical</span></td></tr>
+          <tr><td>NFR-05</td><td>Privacy</td><td>Customer and order information must be protected.</td><td>Collect only required support information; restrict access to authorized admins.</td><td><span class="tag critical">Critical</span></td></tr>
+          <tr><td>NFR-06</td><td>Compliance</td><td>Bot must avoid prohibited health, disease, and cure claims.</td><td>All health-related content follows approved claim library and escalation policy.</td><td><span class="tag critical">Critical</span></td></tr>
+          <tr><td>NFR-07</td><td>Reliability</td><td>System should degrade gracefully when third-party services fail.</td><td>Fallback responses and seed data keep demo/storefront usable during service errors.</td><td><span class="tag high">High</span></td></tr>
+          <tr><td>NFR-08</td><td>Observability</td><td>Support and engineering teams need visibility into errors and user journeys.</td><td>Log chatbot failures, escalation events, latency, and admin CRUD failures.</td><td><span class="tag medium">Medium</span></td></tr>
+          <tr><td>NFR-09</td><td>Auditability</td><td>Conversation outcomes should be reviewable for training and compliance.</td><td>Store conversation metadata, category, escalation status, and approved response version.</td><td><span class="tag high">High</span></td></tr>
+          <tr><td>NFR-10</td><td>Maintainability</td><td>Code should be modular and easy to extend.</td><td>Chat context, AI client, UI components, data access, and product visuals remain separated.</td><td><span class="tag medium">Medium</span></td></tr>
+          <tr><td>NFR-11</td><td>Accessibility</td><td>Core UI should be usable with keyboard and screen readers.</td><td>Buttons have accessible labels, dialogs are keyboard navigable, contrast meets WCAG AA where practical.</td><td><span class="tag medium">Medium</span></td></tr>
+          <tr><td>NFR-12</td><td>Usability</td><td>Customers should understand how to use chat and catalog quickly.</td><td>Chat widget visible, quick actions available, product cards scannable.</td><td><span class="tag high">High</span></td></tr>
+          <tr><td>NFR-13</td><td>Data Integrity</td><td>Admin edits must preserve valid product/order/customer data.</td><td>Required fields, numeric validation, valid status values, and unique SKU/email constraints.</td><td><span class="tag high">High</span></td></tr>
+          <tr><td>NFR-14</td><td>Backup and Recovery</td><td>Operational data should be restorable.</td><td>Supabase backup/export process documented before production launch.</td><td><span class="tag medium">Medium</span></td></tr>
+          <tr><td>NFR-15</td><td>Compatibility</td><td>App should work across modern browsers and responsive layouts.</td><td>Supported on latest Chrome, Safari, Edge, and mobile responsive viewports.</td><td><span class="tag medium">Medium</span></td></tr>
+          <tr><td>NFR-16</td><td>Cost Control</td><td>AI usage should remain financially predictable.</td><td>Track usage, define max tokens, add fallback paths, and monitor provider cost.</td><td><span class="tag medium">Medium</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>9. Data and System Requirements</h2>
+      <h3>Core Data Entities</h3>
+      <table>
+        <thead>
+          <tr><th>Entity</th><th>Purpose</th><th>Important Fields</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Product</td><td>Catalog and recommendation source.</td><td>Name, SKU, category, form, brand, price, inventory, status, description.</td></tr>
+          <tr><td>Customer</td><td>Support and order ownership.</td><td>Name, email, phone, city, country, created date.</td></tr>
+          <tr><td>Order</td><td>Order support and admin workflow.</td><td>Customer ID, status, subtotal, tax, total, created date.</td></tr>
+          <tr><td>Order Item</td><td>Line-item detail for order view.</td><td>Order ID, product ID, quantity, unit price.</td></tr>
+          <tr><td>Conversation</td><td>Future production audit and analytics.</td><td>User message, bot response, category, confidence, escalation flag, timestamp.</td></tr>
+        </tbody>
+      </table>
+      <h3>System Dependencies</h3>
+      <ul>
+        <li>Frontend: Next.js, React, TypeScript, Tailwind CSS.</li>
+        <li>Database: Supabase for products, customers, orders, and order items.</li>
+        <li>AI Provider: OpenRouter-backed assistant in current prototype; production should route through server-side APIs.</li>
+        <li>State: Zustand local cart persistence for storefront cart.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>10. Compliance and Safety Rules</h2>
+      <ul>
+        <li>Bot must not diagnose diseases or recommend treatment plans.</li>
+        <li>Bot must not claim a supplement cures, prevents, or treats a disease unless specifically approved by compliance.</li>
+        <li>Bot must recommend consulting a healthcare professional for pregnancy, chronic disease, medication interactions, severe symptoms, or dosage uncertainty.</li>
+        <li>Bot must not replace doctor, pharmacist, or nutritionist guidance.</li>
+        <li>Bot must not invent ingredients, certifications, clinical proof, delivery promises, or refund approvals.</li>
+        <li>Every risky query should be escalated or answered with conservative general information.</li>
+      </ul>
+    </section>
+
+    <section class="page-break">
+      <h2>11. Release Plan</h2>
+      <table>
+        <thead>
+          <tr><th>Phase</th><th>Timeline</th><th>Activities</th><th>Exit Criteria</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Phase 1: Discovery</td><td>Week 1</td><td>Finalize FAQs, product data, policies, escalation rules, compliance restrictions.</td><td>Approved knowledge base and escalation matrix.</td></tr>
+          <tr><td>Phase 2: Prototype</td><td>Week 2</td><td>Configure storefront, admin dashboard, chatbot context, and demo data.</td><td>Internal demo answers core product/order questions.</td></tr>
+          <tr><td>Phase 3: Compliance Testing</td><td>Week 3</td><td>Test risky prompts, medical questions, complaints, and edge cases.</td><td>Compliance team signs off on guardrail behavior.</td></tr>
+          <tr><td>Phase 4: Pilot</td><td>Week 4</td><td>Launch to limited website traffic or internal users.</td><td>Bot resolves routine questions with acceptable CSAT and escalation accuracy.</td></tr>
+          <tr><td>Phase 5: Production</td><td>Week 5+</td><td>Full website rollout, monitoring, reporting, and optimization.</td><td>KPIs tracked weekly and improvement backlog created.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>12. Risks and Mitigations</h2>
+      <table>
+        <thead>
+          <tr><th>Risk</th><th>Impact</th><th>Mitigation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Bot provides inaccurate supplement guidance.</td><td>High compliance and customer safety risk.</td><td>Use approved knowledge base, medical guardrails, and human escalation.</td></tr>
+          <tr><td>API key exposure in browser.</td><td>High security and cost risk.</td><td>Move AI calls to server-side route before production.</td></tr>
+          <tr><td>Overly permissive database access.</td><td>High data integrity and privacy risk.</td><td>Use authenticated admin access and restrictive RLS policies.</td></tr>
+          <tr><td>Customers distrust bot responses.</td><td>Medium adoption risk.</td><td>Use clear brand tone, concise answers, and easy human handoff.</td></tr>
+          <tr><td>Low-quality knowledge base.</td><td>High answer quality risk.</td><td>Keep product, policy, and FAQ data maintained by product/support owner.</td></tr>
+          <tr><td>Provider latency or downtime.</td><td>Medium service risk.</td><td>Add fallback responses, retries, and status monitoring.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>13. Open Questions</h2>
+      <ul>
+        <li>Which exact FSSAI/UK ASA approved claims can be used for each product category?</li>
+        <li>What CRM, ticketing, email, or WhatsApp platform should escalations integrate with in Phase 2?</li>
+        <li>What are the official support hours for India and UK customers?</li>
+        <li>Which analytics events should be included in the weekly leadership report?</li>
+        <li>What customer data retention policy should apply to chat transcripts?</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>14. Acceptance Summary</h2>
+      <p>
+        The Phase 1 product is acceptable when customers can use the website chatbot to receive
+        safe product and order-support guidance, admins can manage core catalog/customer/order
+        data, risky queries are escalated rather than over-answered, and leadership can evaluate
+        deflection and support workload improvement through measurable KPIs.
+      </p>
+      <p class="small">
+        This PRD is based on the Health360 project brief and current prototype implementation in
+        the Health360 AI customer care application.
+      </p>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Health360 AI Support Solution - Business and Build Document</title>
+    <style>
+      body {
+        color: #17202a;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.5;
+        margin: 42px;
+      }
+
+      h1 {
+        color: #0f172a;
+        font-size: 28px;
+        letter-spacing: -0.02em;
+        margin: 0 0 8px;
+      }
+
+      h2 {
+        border-bottom: 1px solid #d7dee8;
+        color: #0f172a;
+        font-size: 18px;
+        margin: 26px 0 10px;
+        padding-bottom: 6px;
+      }
+
+      h3 {
+        color: #0f172a;
+        font-size: 14px;
+        margin: 18px 0 6px;
+      }
+
+      p {
+        margin: 7px 0;
+      }
+
+      ul,
+      ol {
+        margin: 7px 0 10px 20px;
+        padding: 0;
+      }
+
+      li {
+        margin: 4px 0;
+      }
+
+      table {
+        border-collapse: collapse;
+        margin: 12px 0 16px;
+        width: 100%;
+      }
+
+      th,
+      td {
+        border: 1px solid #d7dee8;
+        padding: 8px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: #f1f5f9;
+        color: #0f172a;
+      }
+
+      .cover {
+        border-bottom: 4px solid #14b8a6;
+        margin-bottom: 24px;
+        padding-bottom: 22px;
+      }
+
+      .eyebrow {
+        color: #0f766e;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+
+      .subtitle {
+        color: #475569;
+        font-size: 14px;
+        max-width: 780px;
+      }
+
+      .meta {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 20px;
+      }
+
+      .meta div,
+      .callout,
+      .card {
+        background: #f8fafc;
+        border: 1px solid #d7dee8;
+        border-radius: 8px;
+        padding: 10px 12px;
+      }
+
+      .label {
+        color: #64748b;
+        display: block;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .value {
+        display: block;
+        font-size: 12px;
+        font-weight: 650;
+        margin-top: 2px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 12px 0 16px;
+      }
+
+      .card strong {
+        color: #0f172a;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .small {
+        color: #64748b;
+        font-size: 10px;
+      }
+
+      code {
+        background: #eef2f7;
+        border-radius: 4px;
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: 11px;
+        padding: 1px 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="cover">
+      <div class="eyebrow">Business and Build Document</div>
+      <h1>Health360 AI Customer Support Solution</h1>
+      <p class="subtitle">
+        A practical overview of the business problem, the solution offered through Health360,
+        how the prototype was built using vibe coding, and how OpenRouter's free model API was
+        integrated through an SDK-style client module.
+      </p>
+      <div class="meta">
+        <div><span class="label">Prepared For</span><span class="value">Health360 Health Supplements</span></div>
+        <div><span class="label">Prepared By</span><span class="value">Vinisha Goyal</span></div>
+        <div><span class="label">Project</span><span class="value">AI Customer Query and Complaint Deflection System</span></div>
+        <div><span class="label">Date</span><span class="value">May 7, 2026</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>1. Executive Summary</h2>
+      <p>
+        Health360 is a health supplement business that needs faster, more consistent customer
+        support for product questions, order questions, shipping concerns, returns, and complaints.
+        The proposed solution is an AI-powered customer support experience on the Health360 website,
+        supported by an admin dashboard and product catalog.
+      </p>
+      <p>
+        The prototype was built using a vibe-coding workflow: defining the business need, rapidly
+        translating it into product screens and data flows, iterating through user feedback, and
+        shipping working features quickly. The AI layer uses OpenRouter's free model API through a
+        lightweight SDK-style client wrapper, allowing the chatbot to respond to customer queries
+        using Health360 product and business context.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Business Problem</h2>
+      <div class="callout">
+        <strong>Problem Statement:</strong>
+        Health360's support team faces a rising volume of repetitive product, order, and complaint
+        queries. Without a self-service support layer, agents spend too much time answering common
+        questions, customers wait longer for help, and the business risks inconsistent or unsafe
+        supplement communication.
+      </div>
+
+      <h3>Customer Support Challenges</h3>
+      <ul>
+        <li>Customers repeatedly ask about supplement benefits, ingredients, dosage, stock, and product suitability.</li>
+        <li>Order-related questions such as shipping, tracking, returns, and delivery timing create avoidable support load.</li>
+        <li>Complaints and urgent concerns are not always categorized or escalated consistently.</li>
+        <li>Manual replies can vary by agent, which weakens brand consistency.</li>
+        <li>Health supplement businesses must avoid unsupported medical claims, diagnosis, or treatment advice.</li>
+        <li>Leadership needs better visibility into product demand, support volume, and customer query patterns.</li>
+      </ul>
+
+      <h3>Impact on Business</h3>
+      <table>
+        <thead>
+          <tr><th>Area</th><th>Problem</th><th>Business Effect</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Support workload</td><td>Agents handle repetitive questions manually.</td><td>Higher workload, slower response time, and reduced capacity for serious complaints.</td></tr>
+          <tr><td>Customer experience</td><td>Customers wait for basic information.</td><td>Lower satisfaction and possible drop-offs before purchase.</td></tr>
+          <tr><td>Compliance</td><td>Supplement guidance can be sensitive.</td><td>Risk of inaccurate claims or unsafe advice.</td></tr>
+          <tr><td>Operations</td><td>No central dashboard for product and support signals.</td><td>Harder to identify trends, stock issues, and support bottlenecks.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>3. Solution Offered Through Health360</h2>
+      <p>
+        The solution is a website-based AI customer support and ecommerce support layer. It combines
+        a Health360 storefront, AI chatbot, cart experience, and admin dashboard. The goal is to
+        deflect routine support queries while keeping humans involved for complaints, low-confidence
+        questions, and medically sensitive conversations.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <strong>AI Chatbot Widget</strong>
+          A floating website chatbot that answers product, order, shipping, returns, and general
+          support questions.
+        </div>
+        <div class="card">
+          <strong>Full-Screen Chatbot</strong>
+          A larger testing and demo mode for validating chatbot behavior and example prompts.
+        </div>
+        <div class="card">
+          <strong>Health360 Product Catalog</strong>
+          A searchable and filterable storefront with Health360-branded supplement product images.
+        </div>
+        <div class="card">
+          <strong>Admin Dashboard</strong>
+          Product, customer, and order views for operations, inventory awareness, and support context.
+        </div>
+      </div>
+
+      <h3>Core Capabilities</h3>
+      <ul>
+        <li>Answer frequently asked customer questions instantly.</li>
+        <li>Recommend relevant supplement categories based on customer wellness goals.</li>
+        <li>Provide product names, categories, price, SKU, stock, and descriptions from the Health360 catalog.</li>
+        <li>Guide customers on order tracking, shipping, and returns.</li>
+        <li>Escalate risky, complaint-heavy, or medically sensitive queries to human support.</li>
+        <li>Show admins product, customer, order, revenue, and low-stock information.</li>
+        <li>Keep the storefront visually branded using generated Health360 supplement imagery.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. How I Built It Using Vibe Coding</h2>
+      <p>
+        Vibe coding was used as the practical build approach: instead of starting with a long
+        engineering specification, the product was shaped iteratively from the business problem,
+        then refined through working screens, code changes, and feedback loops.
+      </p>
+
+      <h3>Vibe-Coding Workflow</h3>
+      <ol>
+        <li><strong>Understand the business pain:</strong> support overload, repetitive queries, and compliance risk.</li>
+        <li><strong>Turn the pain into user flows:</strong> customer asks a question, bot responds, risky cases escalate, admin tracks data.</li>
+        <li><strong>Build the usable interface first:</strong> storefront, product cards, filters, cart, chatbot widget, and admin pages.</li>
+        <li><strong>Add real data structure:</strong> products, customers, orders, and order items through Supabase-compatible helpers.</li>
+        <li><strong>Integrate AI behavior:</strong> create a system prompt from Health360 product and business context.</li>
+        <li><strong>Iterate visually:</strong> replace generic icons with Health360-branded supplement product images.</li>
+        <li><strong>Test and refine:</strong> run lint/build checks, restart the dev server, and adjust based on observed behavior.</li>
+      </ol>
+
+      <h3>Why Vibe Coding Worked for This Project</h3>
+      <ul>
+        <li>It allowed quick movement from concept to working demo.</li>
+        <li>Business feedback could be converted into UI and logic changes immediately.</li>
+        <li>The chatbot, storefront, and admin dashboard could evolve together instead of being designed separately.</li>
+        <li>It made the product easier to present because the demo showed real flows, not only documentation.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. OpenRouter Free API Integration</h2>
+      <p>
+        The chatbot uses an OpenRouter-compatible integration through the project's
+        <code>lib/openrouter.ts</code> module. This module behaves like a small SDK wrapper:
+        it accepts chat messages, formats the API request, sends it to OpenRouter, validates the
+        response, and returns clean assistant text back to the chatbot UI.
+      </p>
+
+      <h3>Integration Flow</h3>
+      <ol>
+        <li>The user types a message in the Health360 chatbot widget.</li>
+        <li>The chatbot loads Health360 context using <code>buildChatContext()</code>.</li>
+        <li>The system prompt is generated using product catalog, inventory summary, and business policies.</li>
+        <li>The current conversation is sent to the OpenRouter chat completions endpoint.</li>
+        <li>The assistant response is displayed in the chatbot with Markdown formatting.</li>
+        <li>If the API fails, the chatbot falls back to safe predefined support responses.</li>
+      </ol>
+
+      <h3>OpenRouter Client Details</h3>
+      <table>
+        <thead>
+          <tr><th>Part</th><th>Implementation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Client module</td><td><code>lib/openrouter.ts</code></td></tr>
+          <tr><td>Request endpoint</td><td><code>https://openrouter.ai/api/v1/chat/completions</code></td></tr>
+          <tr><td>Model value</td><td><code>openrouter/free</code></td></tr>
+          <tr><td>API key variable</td><td><code>NEXT_PUBLIC_OPENROUTER_API_KEY</code> in the prototype</td></tr>
+          <tr><td>Prompt source</td><td><code>lib/chat-context.ts</code> builds the Health360 system prompt</td></tr>
+          <tr><td>UI consumers</td><td><code>ChatbotWidget.tsx</code> and <code>FullScreenChatbot.tsx</code></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Important Production Note</h3>
+      <p>
+        In the prototype, the OpenRouter key is referenced through a public environment variable so
+        the demo can run quickly in the browser. For production, the AI call should move to a
+        server-side API route so the key is not exposed to users. This would also allow better
+        logging, rate limiting, moderation, and cost control.
+      </p>
+    </section>
+
+    <section>
+      <h2>6. Technical Architecture</h2>
+      <table>
+        <thead>
+          <tr><th>Layer</th><th>Technology / File</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Frontend</td><td>Next.js, React, TypeScript</td><td>Storefront, admin dashboard, chatbot UI, routing.</td></tr>
+          <tr><td>Styling</td><td>Tailwind CSS, Radix UI-style components</td><td>Responsive and reusable UI components.</td></tr>
+          <tr><td>Data access</td><td><code>lib/supabase.ts</code></td><td>Products, customers, orders, and order item operations.</td></tr>
+          <tr><td>Fallback data</td><td><code>data/dataset.ts</code></td><td>Demo products, customers, and orders when Supabase is unavailable.</td></tr>
+          <tr><td>Cart</td><td><code>lib/cart.ts</code></td><td>Zustand cart state with local persistence.</td></tr>
+          <tr><td>AI context</td><td><code>lib/chat-context.ts</code></td><td>Builds Health360-specific system prompt and product summaries.</td></tr>
+          <tr><td>AI API</td><td><code>lib/openrouter.ts</code></td><td>OpenRouter-compatible API wrapper for chatbot responses.</td></tr>
+          <tr><td>Visual assets</td><td><code>public/images/health360/</code></td><td>Generated Health360 branded supplement product images.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>7. Functional Requirements Covered</h2>
+      <ul>
+        <li>Customer can browse Health360 supplement products.</li>
+        <li>Customer can search, filter, sort, and view product details.</li>
+        <li>Customer can add items to cart and view totals.</li>
+        <li>Customer can ask the AI assistant product and order questions.</li>
+        <li>Bot can answer using Health360 catalog and business context.</li>
+        <li>Bot can fall back safely if AI service is unavailable.</li>
+        <li>Admin can view products, customers, orders, revenue, and low-stock information.</li>
+        <li>Admin can create/edit/delete product and customer records through Supabase helpers.</li>
+        <li>Order status can be reviewed and updated from the admin order page.</li>
+        <li>Product tables can export CSV reports.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>8. Non-Functional Requirements Considered</h2>
+      <table>
+        <thead>
+          <tr><th>Category</th><th>Requirement</th><th>How It Is Addressed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Performance</td><td>Fast storefront and chatbot response experience.</td><td>Next.js app, client-side filtering, concise prompt context, fallback responses.</td></tr>
+          <tr><td>Reliability</td><td>App should keep working if Supabase or AI provider fails.</td><td>Seed data fallback and mock support responses.</td></tr>
+          <tr><td>Security</td><td>Protect API keys and customer data in production.</td><td>Prototype works for demo; production recommendation is server-side OpenRouter route and stricter RLS.</td></tr>
+          <tr><td>Compliance</td><td>Avoid unsafe health claims.</td><td>System prompt instructs assistant to be conservative and refer medical questions to professionals.</td></tr>
+          <tr><td>Scalability</td><td>Support growing query volume and catalog size.</td><td>Supabase-backed data model and modular UI/data layers.</td></tr>
+          <tr><td>Maintainability</td><td>Keep code organized and easy to update.</td><td>Separate modules for cart, Supabase, OpenRouter, chat context, icons/images, and UI components.</td></tr>
+          <tr><td>Usability</td><td>Customers should find support quickly.</td><td>Floating chatbot, quick actions, product cards, filters, and full-screen chat mode.</td></tr>
+          <tr><td>Branding</td><td>Experience should feel like Health360.</td><td>Generated Health360 supplement imagery and branded assistant language.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>9. Value Delivered</h2>
+      <ul>
+        <li>Reduces repetitive support load by answering common product and order questions.</li>
+        <li>Improves first response time with instant chatbot access.</li>
+        <li>Improves brand consistency through a controlled Health360 assistant voice.</li>
+        <li>Improves product discovery through a searchable, branded storefront.</li>
+        <li>Gives admins operational visibility into product, customer, and order data.</li>
+        <li>Creates a strong base for future WhatsApp, email, CRM, and reporting integrations.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>10. Recommended Next Steps</h2>
+      <ol>
+        <li>Move OpenRouter API calls from the browser to a secure server-side API route.</li>
+        <li>Tighten Supabase RLS policies before production use.</li>
+        <li>Add conversation logging with category, confidence, escalation status, and timestamps.</li>
+        <li>Create an approved FAQ and compliance-safe product claim library.</li>
+        <li>Add human handoff workflow for complaints, medical questions, and refund issues.</li>
+        <li>Add analytics for deflection rate, escalation rate, response time, and top query categories.</li>
+      </ol>
+    </section>
+  </body>
+</html>

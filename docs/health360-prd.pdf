@@ -1,0 +1,1148 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Length 6045 >>
+stream
+BT /F2 22 Tf 54.00 738.00 Td (Health360 AI Customer Query and Complaint Deflection System) Tj ET
+BT /F2 13 Tf 54.00 708.00 Td (Product Requirements Document \(PRD\)) Tj ET
+BT /F2 10 Tf 54.00 684.00 Td (Prepared For:) Tj ET
+BT /F1 10 Tf 179.00 684.00 Td (Health360 Health Supplements Leadership) Tj ET
+BT /F2 10 Tf 54.00 668.00 Td (Prepared By:) Tj ET
+BT /F1 10 Tf 179.00 668.00 Td (Vinisha Goyal) Tj ET
+BT /F2 10 Tf 54.00 652.00 Td (Document Type:) Tj ET
+BT /F1 10 Tf 179.00 652.00 Td (Business Problem, Proposed Solution, Functional Requirements, Non-Functional Requirements) Tj ET
+BT /F2 10 Tf 54.00 636.00 Td (Date:) Tj ET
+BT /F1 10 Tf 179.00 636.00 Td (May 6, 2026) Tj ET
+BT /F2 10 Tf 54.00 620.00 Td (Version:) Tj ET
+BT /F1 10 Tf 179.00 620.00 Td (1.0) Tj ET
+BT /F2 15 Tf 54.00 580.00 Td (1. Executive Summary) Tj ET
+0.6 w 54.00 571.75 m 558.00 571.75 l S
+BT /F1 10 Tf 54.00 563.75 Td (Health360 receives a growing volume of customer conversations across product questions, order support,) Tj ET
+BT /F1 10 Tf 54.00 550.25 Td (delivery concerns, returns, and complaints. The support team has limited human capacity, so repetitive) Tj ET
+BT /F1 10 Tf 54.00 536.75 Td (questions slow down response times and create inconsistent answers. This is especially risky for a health) Tj ET
+BT /F1 10 Tf 54.00 523.25 Td (supplements business because product guidance must be accurate, controlled, and compliant.) Tj ET
+BT /F1 10 Tf 54.00 504.75 Td (The proposed product is an AI-powered customer support layer on the Health360 website, backed by Health360) Tj ET
+BT /F1 10 Tf 54.00 491.25 Td (product data, policy content, complaint routing rules, and an admin dashboard. The system should deflect) Tj ET
+BT /F1 10 Tf 54.00 477.75 Td (routine queries, classify conversations, provide safe product information, escalate uncertain or high-risk) Tj ET
+BT /F1 10 Tf 54.00 464.25 Td (cases, and give administrators metrics for operations and continuous improvement.) Tj ET
+BT /F2 15 Tf 54.00 431.75 Td (2. Business Problem) Tj ET
+0.6 w 54.00 423.50 m 558.00 423.50 l S
+BT /F1 10 Tf 54.00 415.50 Td (Problem statement: Health360's support team cannot efficiently handle the rising volume of repetitive) Tj ET
+BT /F1 10 Tf 54.00 402.00 Td (product, order, and complaint queries while maintaining fast SLAs, consistent answers, and compliant) Tj ET
+BT /F1 10 Tf 54.00 388.50 Td (supplement communication.) Tj ET
+BT /F2 12 Tf 54.00 362.00 Td (Key Pain Points) Tj ET
+BT /F2 10 Tf 56.00 350.40 Td (-) Tj ET
+BT /F1 10 Tf 70.00 350.40 Td (High query volume exceeds available support capacity.) Tj ET
+BT /F2 10 Tf 56.00 335.90 Td (-) Tj ET
+BT /F1 10 Tf 70.00 335.90 Td (Customers repeat common questions about dosage, ingredients, stock, delivery, returns, and order) Tj ET
+BT /F1 10 Tf 70.00 322.40 Td (status.) Tj ET
+BT /F2 10 Tf 56.00 307.90 Td (-) Tj ET
+BT /F1 10 Tf 70.00 307.90 Td (No scalable self-service assistant is available on the website.) Tj ET
+BT /F2 10 Tf 56.00 293.40 Td (-) Tj ET
+BT /F1 10 Tf 70.00 293.40 Td (Manual responses create inconsistent brand tone and product accuracy.) Tj ET
+BT /F2 10 Tf 56.00 278.90 Td (-) Tj ET
+BT /F1 10 Tf 70.00 278.90 Td (Health supplement communication has compliance risk if benefits are overstated.) Tj ET
+BT /F2 10 Tf 56.00 264.40 Td (-) Tj ET
+BT /F1 10 Tf 70.00 264.40 Td (Leadership lacks visibility into query patterns, peak hours, and unresolved issues.) Tj ET
+BT /F2 10 Tf 56.00 249.90 Td (-) Tj ET
+BT /F1 10 Tf 70.00 249.90 Td (Escalations are not consistently tagged by urgency, category, or customer intent.) Tj ET
+BT /F2 12 Tf 54.00 223.40 Td (Business Impact) Tj ET
+0.45 w 54.00 215.80 m 558.00 215.80 l S
+0.35 w 54.00 215.80 m 54.00 196.00 l S
+0.35 w 222.00 215.80 m 222.00 196.00 l S
+0.35 w 390.00 215.80 m 390.00 196.00 l S
+0.35 w 558.00 215.80 m 558.00 196.00 l S
+BT /F2 8.3 Tf 58.00 204.80 Td (Area) Tj ET
+BT /F2 8.3 Tf 226.00 204.80 Td (Current Risk) Tj ET
+BT /F2 8.3 Tf 394.00 204.80 Td (Desired Outcome) Tj ET
+0.45 w 54.00 196.00 m 558.00 196.00 l S
+0.45 w 54.00 196.00 m 558.00 196.00 l S
+0.35 w 54.00 196.00 m 54.00 176.20 l S
+0.35 w 222.00 196.00 m 222.00 176.20 l S
+0.35 w 390.00 196.00 m 390.00 176.20 l S
+0.35 w 558.00 196.00 m 558.00 176.20 l S
+BT /F1 8.3 Tf 58.00 185.00 Td (Support workload) Tj ET
+BT /F1 8.3 Tf 226.00 185.00 Td (Agents spend time on repeated questions.) Tj ET
+BT /F1 8.3 Tf 394.00 185.00 Td (40-60% routine question deflection.) Tj ET
+0.45 w 54.00 176.20 m 558.00 176.20 l S
+0.45 w 54.00 176.20 m 558.00 176.20 l S
+0.35 w 54.00 176.20 m 54.00 145.60 l S
+0.35 w 222.00 176.20 m 222.00 145.60 l S
+0.35 w 390.00 176.20 m 390.00 145.60 l S
+0.35 w 558.00 176.20 m 558.00 145.60 l S
+BT /F1 8.3 Tf 58.00 165.20 Td (Customer experience) Tj ET
+BT /F1 8.3 Tf 226.00 165.20 Td (Delayed first replies and inconsistent) Tj ET
+BT /F1 8.3 Tf 226.00 154.40 Td (answers.) Tj ET
+BT /F1 8.3 Tf 394.00 165.20 Td (Instant first response for common) Tj ET
+BT /F1 8.3 Tf 394.00 154.40 Td (questions.) Tj ET
+0.45 w 54.00 145.60 m 558.00 145.60 l S
+0.45 w 54.00 145.60 m 558.00 145.60 l S
+0.35 w 54.00 145.60 m 54.00 115.00 l S
+0.35 w 222.00 145.60 m 222.00 115.00 l S
+0.35 w 390.00 145.60 m 390.00 115.00 l S
+0.35 w 558.00 145.60 m 558.00 115.00 l S
+BT /F1 8.3 Tf 58.00 134.60 Td (Compliance) Tj ET
+BT /F1 8.3 Tf 226.00 134.60 Td (Risk of inaccurate supplement claims.) Tj ET
+BT /F1 8.3 Tf 394.00 134.60 Td (Approved, constrained answers with) Tj ET
+BT /F1 8.3 Tf 394.00 123.80 Td (escalation.) Tj ET
+0.45 w 54.00 115.00 m 558.00 115.00 l S
+0.45 w 54.00 115.00 m 558.00 115.00 l S
+0.35 w 54.00 115.00 m 54.00 84.40 l S
+0.35 w 222.00 115.00 m 222.00 84.40 l S
+0.35 w 390.00 115.00 m 390.00 84.40 l S
+0.35 w 558.00 115.00 m 558.00 84.40 l S
+BT /F1 8.3 Tf 58.00 104.00 Td (Operations) Tj ET
+BT /F1 8.3 Tf 226.00 104.00 Td (Limited visibility into volume and topic) Tj ET
+BT /F1 8.3 Tf 226.00 93.20 Td (trends.) Tj ET
+BT /F1 8.3 Tf 394.00 104.00 Td (Dashboard for query, category, order, and) Tj ET
+BT /F1 8.3 Tf 394.00 93.20 Td (inventory signals.) Tj ET
+0.45 w 54.00 84.40 m 558.00 84.40 l S
+endstream
+endobj
+4 0 obj
+<< /Length 6792 >>
+stream
+BT /F2 15 Tf 54.00 724.00 Td (3. Proposed Solution) Tj ET
+0.6 w 54.00 715.75 m 558.00 715.75 l S
+BT /F1 10 Tf 54.00 707.75 Td (Build a Health360 AI support assistant embedded on the Health360 website. The assistant answers approved) Tj ET
+BT /F1 10 Tf 54.00 694.25 Td (product and policy questions, recommends relevant supplements based on user goals, handles order-support) Tj ET
+BT /F1 10 Tf 54.00 680.75 Td (prompts, and escalates uncertain or sensitive issues to a human support process. The system includes a) Tj ET
+BT /F1 10 Tf 54.00 667.25 Td (storefront experience, AI chatbot widget, full-screen chatbot testing mode, and admin dashboard for) Tj ET
+BT /F1 10 Tf 54.00 653.75 Td (products, customers, and orders.) Tj ET
+BT /F2 12 Tf 54.00 627.25 Td (Solution Components) Tj ET
+BT /F2 10 Tf 56.00 615.65 Td (-) Tj ET
+BT /F1 10 Tf 70.00 615.65 Td (Customer-facing chatbot: Website widget for product, order, shipping, return, and support questions.) Tj ET
+BT /F2 10 Tf 56.00 601.15 Td (-) Tj ET
+BT /F1 10 Tf 70.00 601.15 Td (Knowledge-based responses: Uses Health360 catalog, inventory, policies, and business information.) Tj ET
+BT /F2 10 Tf 56.00 586.65 Td (-) Tj ET
+BT /F1 10 Tf 70.00 586.65 Td (Admin dashboard: Tracks products, customers, orders, low stock, revenue, and support-related signals.) Tj ET
+BT /F2 10 Tf 56.00 572.15 Td (-) Tj ET
+BT /F1 10 Tf 70.00 572.15 Td (Escalation layer: Routes low-confidence, complaint, medical, or human-agent requests for manual) Tj ET
+BT /F1 10 Tf 70.00 558.65 Td (handling.) Tj ET
+BT /F2 10 Tf 56.00 544.15 Td (-) Tj ET
+BT /F1 10 Tf 70.00 544.15 Td (Branded product catalog: Health360 supplement images and browsable product cards.) Tj ET
+BT /F2 12 Tf 54.00 517.65 Td (Solution Principles) Tj ET
+BT /F2 10 Tf 56.00 506.05 Td (-) Tj ET
+BT /F1 10 Tf 70.00 506.05 Td (Give fast, concise, helpful responses for routine queries.) Tj ET
+BT /F2 10 Tf 56.00 491.55 Td (-) Tj ET
+BT /F1 10 Tf 70.00 491.55 Td (Use Health360-approved product and policy data as the source of truth.) Tj ET
+BT /F2 10 Tf 56.00 477.05 Td (-) Tj ET
+BT /F1 10 Tf 70.00 477.05 Td (Avoid diagnosis, treatment promises, or unsupported medical claims.) Tj ET
+BT /F2 10 Tf 56.00 462.55 Td (-) Tj ET
+BT /F1 10 Tf 70.00 462.55 Td (Escalate when the query is uncertain, risky, emotional, or outside approved content.) Tj ET
+BT /F2 10 Tf 56.00 448.05 Td (-) Tj ET
+BT /F1 10 Tf 70.00 448.05 Td (Make the system measurable through deflection, escalation, response-time, and CSAT metrics.) Tj ET
+BT /F2 15 Tf 54.00 415.55 Td (4. Goals and KPIs) Tj ET
+0.6 w 54.00 407.30 m 558.00 407.30 l S
+0.45 w 54.00 403.30 m 558.00 403.30 l S
+0.35 w 54.00 403.30 m 54.00 383.50 l S
+0.35 w 222.00 403.30 m 222.00 383.50 l S
+0.35 w 390.00 403.30 m 390.00 383.50 l S
+0.35 w 558.00 403.30 m 558.00 383.50 l S
+BT /F2 8.3 Tf 58.00 392.30 Td (ID) Tj ET
+BT /F2 8.3 Tf 226.00 392.30 Td (Goal) Tj ET
+BT /F2 8.3 Tf 394.00 392.30 Td (Target) Tj ET
+0.45 w 54.00 383.50 m 558.00 383.50 l S
+0.45 w 54.00 383.50 m 558.00 383.50 l S
+0.35 w 54.00 383.50 m 54.00 352.90 l S
+0.35 w 222.00 383.50 m 222.00 352.90 l S
+0.35 w 390.00 383.50 m 390.00 352.90 l S
+0.35 w 558.00 383.50 m 558.00 352.90 l S
+BT /F1 8.3 Tf 58.00 372.50 Td (G-01) Tj ET
+BT /F1 8.3 Tf 226.00 372.50 Td (Reduce repetitive tickets reaching) Tj ET
+BT /F1 8.3 Tf 226.00 361.70 Td (agents.) Tj ET
+BT /F1 8.3 Tf 394.00 372.50 Td (40-60% deflection within 3 months.) Tj ET
+0.45 w 54.00 352.90 m 558.00 352.90 l S
+0.45 w 54.00 352.90 m 558.00 352.90 l S
+0.35 w 54.00 352.90 m 54.00 322.30 l S
+0.35 w 222.00 352.90 m 222.00 322.30 l S
+0.35 w 390.00 352.90 m 390.00 322.30 l S
+0.35 w 558.00 352.90 m 558.00 322.30 l S
+BT /F1 8.3 Tf 58.00 341.90 Td (G-02) Tj ET
+BT /F1 8.3 Tf 226.00 341.90 Td (Improve first response time.) Tj ET
+BT /F1 8.3 Tf 394.00 341.90 Td (Bot acknowledgement under 1 second; AI) Tj ET
+BT /F1 8.3 Tf 394.00 331.10 Td (response target under 3 seconds.) Tj ET
+0.45 w 54.00 322.30 m 558.00 322.30 l S
+0.45 w 54.00 322.30 m 558.00 322.30 l S
+0.35 w 54.00 322.30 m 54.00 291.70 l S
+0.35 w 222.00 322.30 m 222.00 291.70 l S
+0.35 w 390.00 322.30 m 390.00 291.70 l S
+0.35 w 558.00 322.30 m 558.00 291.70 l S
+BT /F1 8.3 Tf 58.00 311.30 Td (G-03) Tj ET
+BT /F1 8.3 Tf 226.00 311.30 Td (Maintain safe supplement communication.) Tj ET
+BT /F1 8.3 Tf 394.00 311.30 Td (Zero known regulatory violations from bot) Tj ET
+BT /F1 8.3 Tf 394.00 300.50 Td (content.) Tj ET
+0.45 w 54.00 291.70 m 558.00 291.70 l S
+0.45 w 54.00 291.70 m 558.00 291.70 l S
+0.35 w 54.00 291.70 m 54.00 271.90 l S
+0.35 w 222.00 291.70 m 222.00 271.90 l S
+0.35 w 390.00 291.70 m 390.00 271.90 l S
+0.35 w 558.00 291.70 m 558.00 271.90 l S
+BT /F1 8.3 Tf 58.00 280.70 Td (G-04) Tj ET
+BT /F1 8.3 Tf 226.00 280.70 Td (Increase customer satisfaction.) Tj ET
+BT /F1 8.3 Tf 394.00 280.70 Td (CSAT at or above 4.2 out of 5.) Tj ET
+0.45 w 54.00 271.90 m 558.00 271.90 l S
+0.45 w 54.00 271.90 m 558.00 271.90 l S
+0.35 w 54.00 271.90 m 54.00 230.50 l S
+0.35 w 222.00 271.90 m 222.00 230.50 l S
+0.35 w 390.00 271.90 m 390.00 230.50 l S
+0.35 w 558.00 271.90 m 558.00 230.50 l S
+BT /F1 8.3 Tf 58.00 260.90 Td (G-05) Tj ET
+BT /F1 8.3 Tf 226.00 260.90 Td (Improve operational visibility.) Tj ET
+BT /F1 8.3 Tf 394.00 260.90 Td (Dashboard for volume, products,) Tj ET
+BT /F1 8.3 Tf 394.00 250.10 Td (customers, orders, revenue, and low) Tj ET
+BT /F1 8.3 Tf 394.00 239.30 Td (stock.) Tj ET
+0.45 w 54.00 230.50 m 558.00 230.50 l S
+0.45 w 54.00 230.50 m 558.00 230.50 l S
+0.35 w 54.00 230.50 m 54.00 199.90 l S
+0.35 w 222.00 230.50 m 222.00 199.90 l S
+0.35 w 390.00 230.50 m 390.00 199.90 l S
+0.35 w 558.00 230.50 m 558.00 199.90 l S
+BT /F1 8.3 Tf 58.00 219.50 Td (G-06) Tj ET
+BT /F1 8.3 Tf 226.00 219.50 Td (Lower human support load.) Tj ET
+BT /F1 8.3 Tf 394.00 219.50 Td (At least 40% reduction in repetitive) Tj ET
+BT /F1 8.3 Tf 394.00 208.70 Td (handling effort.) Tj ET
+0.45 w 54.00 199.90 m 558.00 199.90 l S
+BT /F2 15 Tf 54.00 171.90 Td (5. Scope) Tj ET
+0.6 w 54.00 163.65 m 558.00 163.65 l S
+BT /F2 12 Tf 54.00 147.65 Td (In Scope) Tj ET
+BT /F2 10 Tf 56.00 136.05 Td (-) Tj ET
+BT /F1 10 Tf 70.00 136.05 Td (Website chatbot widget and full-screen chatbot testing experience.) Tj ET
+BT /F2 10 Tf 56.00 121.55 Td (-) Tj ET
+BT /F1 10 Tf 70.00 121.55 Td (Health360 product catalog browsing, filtering, and branded product card experience.) Tj ET
+BT /F2 10 Tf 56.00 107.05 Td (-) Tj ET
+BT /F1 10 Tf 70.00 107.05 Td (Admin product, customer, and order management pages.) Tj ET
+BT /F2 10 Tf 56.00 92.55 Td (-) Tj ET
+BT /F1 10 Tf 70.00 92.55 Td (AI responses grounded in product catalog, category, inventory, business policies, and support guidance.) Tj ET
+BT /F2 10 Tf 56.00 78.05 Td (-) Tj ET
+BT /F1 10 Tf 70.00 78.05 Td (Basic order support flow, including tracking guidance and human escalation.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Length 8579 >>
+stream
+BT /F2 10 Tf 56.00 738.00 Td (-) Tj ET
+BT /F1 10 Tf 70.00 738.00 Td (Query classification by broad intent: product query, order support, complaint, general support,) Tj ET
+BT /F1 10 Tf 70.00 724.50 Td (medical/risk.) Tj ET
+BT /F2 10 Tf 56.00 710.00 Td (-) Tj ET
+BT /F1 10 Tf 70.00 710.00 Td (Escalation guidance when confidence is low or user requests a human agent.) Tj ET
+BT /F2 10 Tf 56.00 695.50 Td (-) Tj ET
+BT /F1 10 Tf 70.00 695.50 Td (Dashboard metrics for products, customers, orders, revenue, and low stock.) Tj ET
+BT /F2 12 Tf 54.00 669.00 Td (Out of Scope for Phase 1) Tj ET
+BT /F2 10 Tf 56.00 657.40 Td (-) Tj ET
+BT /F1 10 Tf 70.00 657.40 Td (WhatsApp Business API automation.) Tj ET
+BT /F2 10 Tf 56.00 642.90 Td (-) Tj ET
+BT /F1 10 Tf 70.00 642.90 Td (Email parsing and auto-response workflows.) Tj ET
+BT /F2 10 Tf 56.00 628.40 Td (-) Tj ET
+BT /F1 10 Tf 70.00 628.40 Td (Voice bot, IVR, or call center integration.) Tj ET
+BT /F2 10 Tf 56.00 613.90 Td (-) Tj ET
+BT /F1 10 Tf 70.00 613.90 Td (CRM, ERP, logistics, payment gateway, or warehouse integrations.) Tj ET
+BT /F2 10 Tf 56.00 599.40 Td (-) Tj ET
+BT /F1 10 Tf 70.00 599.40 Td (Mobile app integration.) Tj ET
+BT /F2 10 Tf 56.00 584.90 Td (-) Tj ET
+BT /F1 10 Tf 70.00 584.90 Td (Multilingual support beyond English.) Tj ET
+BT /F2 10 Tf 56.00 570.40 Td (-) Tj ET
+BT /F1 10 Tf 70.00 570.40 Td (Automated refund approval or medical advice.) Tj ET
+BT /F2 15 Tf 54.00 537.90 Td (6. Users and Stakeholders) Tj ET
+0.6 w 54.00 529.65 m 558.00 529.65 l S
+0.45 w 54.00 525.65 m 558.00 525.65 l S
+0.35 w 54.00 525.65 m 54.00 505.85 l S
+0.35 w 222.00 525.65 m 222.00 505.85 l S
+0.35 w 390.00 525.65 m 390.00 505.85 l S
+0.35 w 558.00 525.65 m 558.00 505.85 l S
+BT /F2 8.3 Tf 58.00 514.65 Td (User / Stakeholder) Tj ET
+BT /F2 8.3 Tf 226.00 514.65 Td (Needs) Tj ET
+BT /F2 8.3 Tf 394.00 514.65 Td (Product Support) Tj ET
+0.45 w 54.00 505.85 m 558.00 505.85 l S
+0.45 w 54.00 505.85 m 558.00 505.85 l S
+0.35 w 54.00 505.85 m 54.00 475.25 l S
+0.35 w 222.00 505.85 m 222.00 475.25 l S
+0.35 w 390.00 505.85 m 390.00 475.25 l S
+0.35 w 558.00 505.85 m 558.00 475.25 l S
+BT /F1 8.3 Tf 58.00 494.85 Td (Customer) Tj ET
+BT /F1 8.3 Tf 226.00 494.85 Td (Fast answers about supplements, delivery,) Tj ET
+BT /F1 8.3 Tf 226.00 484.05 Td (returns, and orders.) Tj ET
+BT /F1 8.3 Tf 394.00 494.85 Td (Website chatbot and product catalog.) Tj ET
+0.45 w 54.00 475.25 m 558.00 475.25 l S
+0.45 w 54.00 475.25 m 558.00 475.25 l S
+0.35 w 54.00 475.25 m 54.00 444.65 l S
+0.35 w 222.00 475.25 m 222.00 444.65 l S
+0.35 w 390.00 475.25 m 390.00 444.65 l S
+0.35 w 558.00 475.25 m 558.00 444.65 l S
+BT /F1 8.3 Tf 58.00 464.25 Td (Support Agent) Tj ET
+BT /F1 8.3 Tf 226.00 464.25 Td (Fewer repetitive tickets and clearer) Tj ET
+BT /F1 8.3 Tf 226.00 453.45 Td (escalations.) Tj ET
+BT /F1 8.3 Tf 394.00 464.25 Td (Deflection, category tagging, escalation) Tj ET
+BT /F1 8.3 Tf 394.00 453.45 Td (prompts.) Tj ET
+0.45 w 54.00 444.65 m 558.00 444.65 l S
+0.45 w 54.00 444.65 m 558.00 444.65 l S
+0.35 w 54.00 444.65 m 54.00 414.05 l S
+0.35 w 222.00 444.65 m 222.00 414.05 l S
+0.35 w 390.00 444.65 m 390.00 414.05 l S
+0.35 w 558.00 444.65 m 558.00 414.05 l S
+BT /F1 8.3 Tf 58.00 433.65 Td (Support Lead) Tj ET
+BT /F1 8.3 Tf 226.00 433.65 Td (Visibility into query trends, volume, and) Tj ET
+BT /F1 8.3 Tf 226.00 422.85 Td (unresolved issues.) Tj ET
+BT /F1 8.3 Tf 394.00 433.65 Td (Admin dashboard and future reports.) Tj ET
+0.45 w 54.00 414.05 m 558.00 414.05 l S
+0.45 w 54.00 414.05 m 558.00 414.05 l S
+0.35 w 54.00 414.05 m 54.00 383.45 l S
+0.35 w 222.00 414.05 m 222.00 383.45 l S
+0.35 w 390.00 414.05 m 390.00 383.45 l S
+0.35 w 558.00 414.05 m 558.00 383.45 l S
+BT /F1 8.3 Tf 58.00 403.05 Td (Compliance Officer) Tj ET
+BT /F1 8.3 Tf 226.00 403.05 Td (Safe, approved supplement claims.) Tj ET
+BT /F1 8.3 Tf 394.00 403.05 Td (Guardrails, restricted response policy,) Tj ET
+BT /F1 8.3 Tf 394.00 392.25 Td (escalation.) Tj ET
+0.45 w 54.00 383.45 m 558.00 383.45 l S
+0.45 w 54.00 383.45 m 558.00 383.45 l S
+0.35 w 54.00 383.45 m 54.00 352.85 l S
+0.35 w 222.00 383.45 m 222.00 352.85 l S
+0.35 w 390.00 383.45 m 390.00 352.85 l S
+0.35 w 558.00 383.45 m 558.00 352.85 l S
+BT /F1 8.3 Tf 58.00 372.45 Td (Operations / Inventory) Tj ET
+BT /F1 8.3 Tf 226.00 372.45 Td (Awareness of product and stock patterns.) Tj ET
+BT /F1 8.3 Tf 394.00 372.45 Td (Inventory display and low-stock) Tj ET
+BT /F1 8.3 Tf 394.00 361.65 Td (dashboard.) Tj ET
+0.45 w 54.00 352.85 m 558.00 352.85 l S
+0.45 w 54.00 352.85 m 558.00 352.85 l S
+0.35 w 54.00 352.85 m 54.00 322.25 l S
+0.35 w 222.00 352.85 m 222.00 322.25 l S
+0.35 w 390.00 352.85 m 390.00 322.25 l S
+0.35 w 558.00 352.85 m 558.00 322.25 l S
+BT /F1 8.3 Tf 58.00 341.85 Td (Leadership) Tj ET
+BT /F1 8.3 Tf 226.00 341.85 Td (Lower cost, better service, measurable) Tj ET
+BT /F1 8.3 Tf 226.00 331.05 Td (ROI.) Tj ET
+BT /F1 8.3 Tf 394.00 341.85 Td (Deflection and performance KPIs.) Tj ET
+0.45 w 54.00 322.25 m 558.00 322.25 l S
+BT /F2 15 Tf 54.00 294.25 Td (7. Functional Requirements) Tj ET
+0.6 w 54.00 286.00 m 558.00 286.00 l S
+0.45 w 54.00 282.00 m 558.00 282.00 l S
+0.35 w 54.00 282.00 m 54.00 262.20 l S
+0.35 w 180.00 282.00 m 180.00 262.20 l S
+0.35 w 306.00 282.00 m 306.00 262.20 l S
+0.35 w 432.00 282.00 m 432.00 262.20 l S
+0.35 w 558.00 282.00 m 558.00 262.20 l S
+BT /F2 8.3 Tf 58.00 271.00 Td (ID) Tj ET
+BT /F2 8.3 Tf 184.00 271.00 Td (Requirement) Tj ET
+BT /F2 8.3 Tf 310.00 271.00 Td (Priority) Tj ET
+BT /F2 8.3 Tf 436.00 271.00 Td (Acceptance Criteria) Tj ET
+0.45 w 54.00 262.20 m 558.00 262.20 l S
+0.45 w 54.00 262.20 m 558.00 262.20 l S
+0.35 w 54.00 262.20 m 54.00 231.60 l S
+0.35 w 180.00 262.20 m 180.00 231.60 l S
+0.35 w 306.00 262.20 m 306.00 231.60 l S
+0.35 w 432.00 262.20 m 432.00 231.60 l S
+0.35 w 558.00 262.20 m 558.00 231.60 l S
+BT /F1 8.3 Tf 58.00 251.20 Td (FR-01) Tj ET
+BT /F1 8.3 Tf 184.00 251.20 Td (Website chatbot widget) Tj ET
+BT /F1 8.3 Tf 310.00 251.20 Td (Critical) Tj ET
+BT /F1 8.3 Tf 436.00 251.20 Td (User can open chat, type,) Tj ET
+BT /F1 8.3 Tf 436.00 240.40 Td (send, and receive a response.) Tj ET
+0.45 w 54.00 231.60 m 558.00 231.60 l S
+0.45 w 54.00 231.60 m 558.00 231.60 l S
+0.35 w 54.00 231.60 m 54.00 190.20 l S
+0.35 w 180.00 231.60 m 180.00 190.20 l S
+0.35 w 306.00 231.60 m 306.00 190.20 l S
+0.35 w 432.00 231.60 m 432.00 190.20 l S
+0.35 w 558.00 231.60 m 558.00 190.20 l S
+BT /F1 8.3 Tf 58.00 220.60 Td (FR-02) Tj ET
+BT /F1 8.3 Tf 184.00 220.60 Td (Full-screen chatbot) Tj ET
+BT /F1 8.3 Tf 310.00 220.60 Td (High) Tj ET
+BT /F1 8.3 Tf 436.00 220.60 Td (User can open full-screen chat) Tj ET
+BT /F1 8.3 Tf 436.00 209.80 Td (and close it with UI or) Tj ET
+BT /F1 8.3 Tf 436.00 199.00 Td (Escape.) Tj ET
+0.45 w 54.00 190.20 m 558.00 190.20 l S
+0.45 w 54.00 190.20 m 558.00 190.20 l S
+0.35 w 54.00 190.20 m 54.00 148.80 l S
+0.35 w 180.00 190.20 m 180.00 148.80 l S
+0.35 w 306.00 190.20 m 306.00 148.80 l S
+0.35 w 432.00 190.20 m 432.00 148.80 l S
+0.35 w 558.00 190.20 m 558.00 148.80 l S
+BT /F1 8.3 Tf 58.00 179.20 Td (FR-03) Tj ET
+BT /F1 8.3 Tf 184.00 179.20 Td (Product-aware answers) Tj ET
+BT /F1 8.3 Tf 310.00 179.20 Td (Critical) Tj ET
+BT /F1 8.3 Tf 436.00 179.20 Td (Bot answers catalog questions) Tj ET
+BT /F1 8.3 Tf 436.00 168.40 Td (using product, price,) Tj ET
+BT /F1 8.3 Tf 436.00 157.60 Td (category, and inventory data.) Tj ET
+0.45 w 54.00 148.80 m 558.00 148.80 l S
+0.45 w 54.00 148.80 m 558.00 148.80 l S
+0.35 w 54.00 148.80 m 54.00 107.40 l S
+0.35 w 180.00 148.80 m 180.00 107.40 l S
+0.35 w 306.00 148.80 m 306.00 107.40 l S
+0.35 w 432.00 148.80 m 432.00 107.40 l S
+0.35 w 558.00 148.80 m 558.00 107.40 l S
+BT /F1 8.3 Tf 58.00 137.80 Td (FR-04) Tj ET
+BT /F1 8.3 Tf 184.00 137.80 Td (Product recommendations) Tj ET
+BT /F1 8.3 Tf 310.00 137.80 Td (High) Tj ET
+BT /F1 8.3 Tf 436.00 137.80 Td (Bot recommends relevant) Tj ET
+BT /F1 8.3 Tf 436.00 127.00 Td (supplements without medical) Tj ET
+BT /F1 8.3 Tf 436.00 116.20 Td (claims.) Tj ET
+0.45 w 54.00 107.40 m 558.00 107.40 l S
+0.45 w 54.00 107.40 m 558.00 107.40 l S
+0.35 w 54.00 107.40 m 54.00 66.00 l S
+0.35 w 180.00 107.40 m 180.00 66.00 l S
+0.35 w 306.00 107.40 m 306.00 66.00 l S
+0.35 w 432.00 107.40 m 432.00 66.00 l S
+0.35 w 558.00 107.40 m 558.00 66.00 l S
+BT /F1 8.3 Tf 58.00 96.40 Td (FR-05) Tj ET
+BT /F1 8.3 Tf 184.00 96.40 Td (Order support guidance) Tj ET
+BT /F1 8.3 Tf 310.00 96.40 Td (High) Tj ET
+BT /F1 8.3 Tf 436.00 96.40 Td (Bot asks for order ID/email) Tj ET
+BT /F1 8.3 Tf 436.00 85.60 Td (and routes complex cases to) Tj ET
+BT /F1 8.3 Tf 436.00 74.80 Td (support.) Tj ET
+0.45 w 54.00 66.00 m 558.00 66.00 l S
+endstream
+endobj
+6 0 obj
+<< /Length 9942 >>
+stream
+0.45 w 54.00 742.00 m 558.00 742.00 l S
+0.35 w 54.00 742.00 m 54.00 700.60 l S
+0.35 w 180.00 742.00 m 180.00 700.60 l S
+0.35 w 306.00 742.00 m 306.00 700.60 l S
+0.35 w 432.00 742.00 m 432.00 700.60 l S
+0.35 w 558.00 742.00 m 558.00 700.60 l S
+BT /F1 8.3 Tf 58.00 731.00 Td (FR-06) Tj ET
+BT /F1 8.3 Tf 184.00 731.00 Td (Query classification) Tj ET
+BT /F1 8.3 Tf 310.00 731.00 Td (High) Tj ET
+BT /F1 8.3 Tf 436.00 731.00 Td (Messages are classified as) Tj ET
+BT /F1 8.3 Tf 436.00 720.20 Td (product, complaint, order,) Tj ET
+BT /F1 8.3 Tf 436.00 709.40 Td (general, or medical/risk.) Tj ET
+0.45 w 54.00 700.60 m 558.00 700.60 l S
+0.45 w 54.00 700.60 m 558.00 700.60 l S
+0.35 w 54.00 700.60 m 54.00 659.20 l S
+0.35 w 180.00 700.60 m 180.00 659.20 l S
+0.35 w 306.00 700.60 m 306.00 659.20 l S
+0.35 w 432.00 700.60 m 432.00 659.20 l S
+0.35 w 558.00 700.60 m 558.00 659.20 l S
+BT /F1 8.3 Tf 58.00 689.60 Td (FR-07) Tj ET
+BT /F1 8.3 Tf 184.00 689.60 Td (Complaint escalation) Tj ET
+BT /F1 8.3 Tf 310.00 689.60 Td (Critical) Tj ET
+BT /F1 8.3 Tf 436.00 689.60 Td (Bot escalates complaints,) Tj ET
+BT /F1 8.3 Tf 436.00 678.80 Td (refund disputes, legal) Tj ET
+BT /F1 8.3 Tf 436.00 668.00 Td (threats, and safety concerns.) Tj ET
+0.45 w 54.00 659.20 m 558.00 659.20 l S
+0.45 w 54.00 659.20 m 558.00 659.20 l S
+0.35 w 54.00 659.20 m 54.00 607.00 l S
+0.35 w 180.00 659.20 m 180.00 607.00 l S
+0.35 w 306.00 659.20 m 306.00 607.00 l S
+0.35 w 432.00 659.20 m 432.00 607.00 l S
+0.35 w 558.00 659.20 m 558.00 607.00 l S
+BT /F1 8.3 Tf 58.00 648.20 Td (FR-08) Tj ET
+BT /F1 8.3 Tf 184.00 648.20 Td (Medical guardrails) Tj ET
+BT /F1 8.3 Tf 310.00 648.20 Td (Critical) Tj ET
+BT /F1 8.3 Tf 436.00 648.20 Td (Bot avoids diagnosis,) Tj ET
+BT /F1 8.3 Tf 436.00 637.40 Td (treatment, disease-cure) Tj ET
+BT /F1 8.3 Tf 436.00 626.60 Td (claims, and unsafe dosage) Tj ET
+BT /F1 8.3 Tf 436.00 615.80 Td (advice.) Tj ET
+0.45 w 54.00 607.00 m 558.00 607.00 l S
+0.45 w 54.00 607.00 m 558.00 607.00 l S
+0.35 w 54.00 607.00 m 54.00 565.60 l S
+0.35 w 180.00 607.00 m 180.00 565.60 l S
+0.35 w 306.00 607.00 m 306.00 565.60 l S
+0.35 w 432.00 607.00 m 432.00 565.60 l S
+0.35 w 558.00 607.00 m 558.00 565.60 l S
+BT /F1 8.3 Tf 58.00 596.00 Td (FR-09) Tj ET
+BT /F1 8.3 Tf 184.00 596.00 Td (Admin dashboard) Tj ET
+BT /F1 8.3 Tf 310.00 596.00 Td (High) Tj ET
+BT /F1 8.3 Tf 436.00 596.00 Td (Dashboard renders products,) Tj ET
+BT /F1 8.3 Tf 436.00 585.20 Td (customers, orders, revenue,) Tj ET
+BT /F1 8.3 Tf 436.00 574.40 Td (and low-stock metrics.) Tj ET
+0.45 w 54.00 565.60 m 558.00 565.60 l S
+0.45 w 54.00 565.60 m 558.00 565.60 l S
+0.35 w 54.00 565.60 m 54.00 524.20 l S
+0.35 w 180.00 565.60 m 180.00 524.20 l S
+0.35 w 306.00 565.60 m 306.00 524.20 l S
+0.35 w 432.00 565.60 m 432.00 524.20 l S
+0.35 w 558.00 565.60 m 558.00 524.20 l S
+BT /F1 8.3 Tf 58.00 554.60 Td (FR-10) Tj ET
+BT /F1 8.3 Tf 184.00 554.60 Td (Product management) Tj ET
+BT /F1 8.3 Tf 310.00 554.60 Td (High) Tj ET
+BT /F1 8.3 Tf 436.00 554.60 Td (Admins can create, edit,) Tj ET
+BT /F1 8.3 Tf 436.00 543.80 Td (search, delete, and export) Tj ET
+BT /F1 8.3 Tf 436.00 533.00 Td (products.) Tj ET
+0.45 w 54.00 524.20 m 558.00 524.20 l S
+0.45 w 54.00 524.20 m 558.00 524.20 l S
+0.35 w 54.00 524.20 m 54.00 482.80 l S
+0.35 w 180.00 524.20 m 180.00 482.80 l S
+0.35 w 306.00 524.20 m 306.00 482.80 l S
+0.35 w 432.00 524.20 m 432.00 482.80 l S
+0.35 w 558.00 524.20 m 558.00 482.80 l S
+BT /F1 8.3 Tf 58.00 513.20 Td (FR-11) Tj ET
+BT /F1 8.3 Tf 184.00 513.20 Td (Customer management) Tj ET
+BT /F1 8.3 Tf 310.00 513.20 Td (Medium) Tj ET
+BT /F1 8.3 Tf 436.00 513.20 Td (Admins can create, edit,) Tj ET
+BT /F1 8.3 Tf 436.00 502.40 Td (search, delete, and export) Tj ET
+BT /F1 8.3 Tf 436.00 491.60 Td (customers.) Tj ET
+0.45 w 54.00 482.80 m 558.00 482.80 l S
+0.45 w 54.00 482.80 m 558.00 482.80 l S
+0.35 w 54.00 482.80 m 54.00 452.20 l S
+0.35 w 180.00 482.80 m 180.00 452.20 l S
+0.35 w 306.00 482.80 m 306.00 452.20 l S
+0.35 w 432.00 482.80 m 432.00 452.20 l S
+0.35 w 558.00 482.80 m 558.00 452.20 l S
+BT /F1 8.3 Tf 58.00 471.80 Td (FR-12) Tj ET
+BT /F1 8.3 Tf 184.00 471.80 Td (Order management) Tj ET
+BT /F1 8.3 Tf 310.00 471.80 Td (High) Tj ET
+BT /F1 8.3 Tf 436.00 471.80 Td (Admins can view order details) Tj ET
+BT /F1 8.3 Tf 436.00 461.00 Td (and update order status.) Tj ET
+0.45 w 54.00 452.20 m 558.00 452.20 l S
+0.45 w 54.00 452.20 m 558.00 452.20 l S
+0.35 w 54.00 452.20 m 54.00 410.80 l S
+0.35 w 180.00 452.20 m 180.00 410.80 l S
+0.35 w 306.00 452.20 m 306.00 410.80 l S
+0.35 w 432.00 452.20 m 432.00 410.80 l S
+0.35 w 558.00 452.20 m 558.00 410.80 l S
+BT /F1 8.3 Tf 58.00 441.20 Td (FR-13) Tj ET
+BT /F1 8.3 Tf 184.00 441.20 Td (Storefront catalog) Tj ET
+BT /F1 8.3 Tf 310.00 441.20 Td (High) Tj ET
+BT /F1 8.3 Tf 436.00 441.20 Td (Users can browse product cards) Tj ET
+BT /F1 8.3 Tf 436.00 430.40 Td (with brand imagery, price,) Tj ET
+BT /F1 8.3 Tf 436.00 419.60 Td (rating, description, and SKU.) Tj ET
+0.45 w 54.00 410.80 m 558.00 410.80 l S
+0.45 w 54.00 410.80 m 558.00 410.80 l S
+0.35 w 54.00 410.80 m 54.00 369.40 l S
+0.35 w 180.00 410.80 m 180.00 369.40 l S
+0.35 w 306.00 410.80 m 306.00 369.40 l S
+0.35 w 432.00 410.80 m 432.00 369.40 l S
+0.35 w 558.00 410.80 m 558.00 369.40 l S
+BT /F1 8.3 Tf 58.00 399.80 Td (FR-14) Tj ET
+BT /F1 8.3 Tf 184.00 399.80 Td (Catalog filters) Tj ET
+BT /F1 8.3 Tf 310.00 399.80 Td (Medium) Tj ET
+BT /F1 8.3 Tf 436.00 399.80 Td (Users can filter by search,) Tj ET
+BT /F1 8.3 Tf 436.00 389.00 Td (category, form, and sort) Tj ET
+BT /F1 8.3 Tf 436.00 378.20 Td (option.) Tj ET
+0.45 w 54.00 369.40 m 558.00 369.40 l S
+0.45 w 54.00 369.40 m 558.00 369.40 l S
+0.35 w 54.00 369.40 m 54.00 328.00 l S
+0.35 w 180.00 369.40 m 180.00 328.00 l S
+0.35 w 306.00 369.40 m 306.00 328.00 l S
+0.35 w 432.00 369.40 m 432.00 328.00 l S
+0.35 w 558.00 369.40 m 558.00 328.00 l S
+BT /F1 8.3 Tf 58.00 358.40 Td (FR-15) Tj ET
+BT /F1 8.3 Tf 184.00 358.40 Td (Cart) Tj ET
+BT /F1 8.3 Tf 310.00 358.40 Td (Medium) Tj ET
+BT /F1 8.3 Tf 436.00 358.40 Td (Users can add, remove,) Tj ET
+BT /F1 8.3 Tf 436.00 347.60 Td (increment, decrement, and) Tj ET
+BT /F1 8.3 Tf 436.00 336.80 Td (clear cart items.) Tj ET
+0.45 w 54.00 328.00 m 558.00 328.00 l S
+0.45 w 54.00 328.00 m 558.00 328.00 l S
+0.35 w 54.00 328.00 m 54.00 286.60 l S
+0.35 w 180.00 328.00 m 180.00 286.60 l S
+0.35 w 306.00 328.00 m 306.00 286.60 l S
+0.35 w 432.00 328.00 m 432.00 286.60 l S
+0.35 w 558.00 328.00 m 558.00 286.60 l S
+BT /F1 8.3 Tf 58.00 317.00 Td (FR-16) Tj ET
+BT /F1 8.3 Tf 184.00 317.00 Td (Fallback data) Tj ET
+BT /F1 8.3 Tf 310.00 317.00 Td (High) Tj ET
+BT /F1 8.3 Tf 436.00 317.00 Td (Storefront and admin pages) Tj ET
+BT /F1 8.3 Tf 436.00 306.20 Td (remain usable if Supabase is) Tj ET
+BT /F1 8.3 Tf 436.00 295.40 Td (unavailable.) Tj ET
+0.45 w 54.00 286.60 m 558.00 286.60 l S
+0.45 w 54.00 286.60 m 558.00 286.60 l S
+0.35 w 54.00 286.60 m 54.00 256.00 l S
+0.35 w 180.00 286.60 m 180.00 256.00 l S
+0.35 w 306.00 286.60 m 306.00 256.00 l S
+0.35 w 432.00 286.60 m 432.00 256.00 l S
+0.35 w 558.00 286.60 m 558.00 256.00 l S
+BT /F1 8.3 Tf 58.00 275.60 Td (FR-17) Tj ET
+BT /F1 8.3 Tf 184.00 275.60 Td (Reporting export) Tj ET
+BT /F1 8.3 Tf 310.00 275.60 Td (Medium) Tj ET
+BT /F1 8.3 Tf 436.00 275.60 Td (Admin tables can export) Tj ET
+BT /F1 8.3 Tf 436.00 264.80 Td (current rows to CSV.) Tj ET
+0.45 w 54.00 256.00 m 558.00 256.00 l S
+0.45 w 54.00 256.00 m 558.00 256.00 l S
+0.35 w 54.00 256.00 m 54.00 214.60 l S
+0.35 w 180.00 256.00 m 180.00 214.60 l S
+0.35 w 306.00 256.00 m 306.00 214.60 l S
+0.35 w 432.00 256.00 m 432.00 214.60 l S
+0.35 w 558.00 256.00 m 558.00 214.60 l S
+BT /F1 8.3 Tf 58.00 245.00 Td (FR-18) Tj ET
+BT /F1 8.3 Tf 184.00 245.00 Td (Brand presentation) Tj ET
+BT /F1 8.3 Tf 310.00 245.00 Td (Medium) Tj ET
+BT /F1 8.3 Tf 436.00 245.00 Td (Category cards show) Tj ET
+BT /F1 8.3 Tf 436.00 234.20 Td (Health360-branded supplement) Tj ET
+BT /F1 8.3 Tf 436.00 223.40 Td (imagery.) Tj ET
+0.45 w 54.00 214.60 m 558.00 214.60 l S
+BT /F2 15 Tf 54.00 186.60 Td (8. Non-Functional Requirements) Tj ET
+0.6 w 54.00 178.35 m 558.00 178.35 l S
+0.45 w 54.00 174.35 m 558.00 174.35 l S
+0.35 w 54.00 174.35 m 54.00 154.55 l S
+0.35 w 180.00 174.35 m 180.00 154.55 l S
+0.35 w 306.00 174.35 m 306.00 154.55 l S
+0.35 w 432.00 174.35 m 432.00 154.55 l S
+0.35 w 558.00 174.35 m 558.00 154.55 l S
+BT /F2 8.3 Tf 58.00 163.35 Td (ID) Tj ET
+BT /F2 8.3 Tf 184.00 163.35 Td (Category) Tj ET
+BT /F2 8.3 Tf 310.00 163.35 Td (Requirement) Tj ET
+BT /F2 8.3 Tf 436.00 163.35 Td (Target) Tj ET
+0.45 w 54.00 154.55 m 558.00 154.55 l S
+0.45 w 54.00 154.55 m 558.00 154.55 l S
+0.35 w 54.00 154.55 m 54.00 102.35 l S
+0.35 w 180.00 154.55 m 180.00 102.35 l S
+0.35 w 306.00 154.55 m 306.00 102.35 l S
+0.35 w 432.00 154.55 m 432.00 102.35 l S
+0.35 w 558.00 154.55 m 558.00 102.35 l S
+BT /F1 8.3 Tf 58.00 143.55 Td (NFR-01) Tj ET
+BT /F1 8.3 Tf 184.00 143.55 Td (Availability) Tj ET
+BT /F1 8.3 Tf 310.00 143.55 Td (Customer-facing chatbot and) Tj ET
+BT /F1 8.3 Tf 310.00 132.75 Td (storefront should be available) Tj ET
+BT /F1 8.3 Tf 310.00 121.95 Td (during business-critical) Tj ET
+BT /F1 8.3 Tf 310.00 111.15 Td (hours.) Tj ET
+BT /F1 8.3 Tf 436.00 143.55 Td (99.5% monthly uptime target) Tj ET
+BT /F1 8.3 Tf 436.00 132.75 Td (after production launch.) Tj ET
+0.45 w 54.00 102.35 m 558.00 102.35 l S
+0.45 w 54.00 102.35 m 558.00 102.35 l S
+0.35 w 54.00 102.35 m 54.00 60.95 l S
+0.35 w 180.00 102.35 m 180.00 60.95 l S
+0.35 w 306.00 102.35 m 306.00 60.95 l S
+0.35 w 432.00 102.35 m 432.00 60.95 l S
+0.35 w 558.00 102.35 m 558.00 60.95 l S
+BT /F1 8.3 Tf 58.00 91.35 Td (NFR-02) Tj ET
+BT /F1 8.3 Tf 184.00 91.35 Td (Performance) Tj ET
+BT /F1 8.3 Tf 310.00 91.35 Td (Chatbot responses should feel) Tj ET
+BT /F1 8.3 Tf 310.00 80.55 Td (instant.) Tj ET
+BT /F1 8.3 Tf 436.00 91.35 Td (UI acknowledgement under 1) Tj ET
+BT /F1 8.3 Tf 436.00 80.55 Td (second; AI response target) Tj ET
+BT /F1 8.3 Tf 436.00 69.75 Td (under 3 seconds.) Tj ET
+0.45 w 54.00 60.95 m 558.00 60.95 l S
+endstream
+endobj
+7 0 obj
+<< /Length 11076 >>
+stream
+0.45 w 54.00 742.00 m 558.00 742.00 l S
+0.35 w 54.00 742.00 m 54.00 700.60 l S
+0.35 w 180.00 742.00 m 180.00 700.60 l S
+0.35 w 306.00 742.00 m 306.00 700.60 l S
+0.35 w 432.00 742.00 m 432.00 700.60 l S
+0.35 w 558.00 742.00 m 558.00 700.60 l S
+BT /F1 8.3 Tf 58.00 731.00 Td (NFR-03) Tj ET
+BT /F1 8.3 Tf 184.00 731.00 Td (Scalability) Tj ET
+BT /F1 8.3 Tf 310.00 731.00 Td (System should support growth) Tj ET
+BT /F1 8.3 Tf 310.00 720.20 Td (without redesign.) Tj ET
+BT /F1 8.3 Tf 436.00 731.00 Td (Support up to 10,000) Tj ET
+BT /F1 8.3 Tf 436.00 720.20 Td (queries/day with horizontal) Tj ET
+BT /F1 8.3 Tf 436.00 709.40 Td (scaling.) Tj ET
+0.45 w 54.00 700.60 m 558.00 700.60 l S
+0.45 w 54.00 700.60 m 558.00 700.60 l S
+0.35 w 54.00 700.60 m 54.00 648.40 l S
+0.35 w 180.00 700.60 m 180.00 648.40 l S
+0.35 w 306.00 700.60 m 306.00 648.40 l S
+0.35 w 432.00 700.60 m 432.00 648.40 l S
+0.35 w 558.00 700.60 m 558.00 648.40 l S
+BT /F1 8.3 Tf 58.00 689.60 Td (NFR-04) Tj ET
+BT /F1 8.3 Tf 184.00 689.60 Td (Security) Tj ET
+BT /F1 8.3 Tf 310.00 689.60 Td (API keys and privileged) Tj ET
+BT /F1 8.3 Tf 310.00 678.80 Td (database operations must not) Tj ET
+BT /F1 8.3 Tf 310.00 668.00 Td (be exposed to browsers.) Tj ET
+BT /F1 8.3 Tf 436.00 689.60 Td (AI and admin-sensitive) Tj ET
+BT /F1 8.3 Tf 436.00 678.80 Td (operations run through) Tj ET
+BT /F1 8.3 Tf 436.00 668.00 Td (server-side endpoints or) Tj ET
+BT /F1 8.3 Tf 436.00 657.20 Td (protected roles.) Tj ET
+0.45 w 54.00 648.40 m 558.00 648.40 l S
+0.45 w 54.00 648.40 m 558.00 648.40 l S
+0.35 w 54.00 648.40 m 54.00 617.80 l S
+0.35 w 180.00 648.40 m 180.00 617.80 l S
+0.35 w 306.00 648.40 m 306.00 617.80 l S
+0.35 w 432.00 648.40 m 432.00 617.80 l S
+0.35 w 558.00 648.40 m 558.00 617.80 l S
+BT /F1 8.3 Tf 58.00 637.40 Td (NFR-05) Tj ET
+BT /F1 8.3 Tf 184.00 637.40 Td (Privacy) Tj ET
+BT /F1 8.3 Tf 310.00 637.40 Td (Customer and order information) Tj ET
+BT /F1 8.3 Tf 310.00 626.60 Td (must be protected.) Tj ET
+BT /F1 8.3 Tf 436.00 637.40 Td (Collect only required data and) Tj ET
+BT /F1 8.3 Tf 436.00 626.60 Td (restrict admin access.) Tj ET
+0.45 w 54.00 617.80 m 558.00 617.80 l S
+0.45 w 54.00 617.80 m 558.00 617.80 l S
+0.35 w 54.00 617.80 m 54.00 576.40 l S
+0.35 w 180.00 617.80 m 180.00 576.40 l S
+0.35 w 306.00 617.80 m 306.00 576.40 l S
+0.35 w 432.00 617.80 m 432.00 576.40 l S
+0.35 w 558.00 617.80 m 558.00 576.40 l S
+BT /F1 8.3 Tf 58.00 606.80 Td (NFR-06) Tj ET
+BT /F1 8.3 Tf 184.00 606.80 Td (Compliance) Tj ET
+BT /F1 8.3 Tf 310.00 606.80 Td (Bot must avoid prohibited) Tj ET
+BT /F1 8.3 Tf 310.00 596.00 Td (health, disease, and cure) Tj ET
+BT /F1 8.3 Tf 310.00 585.20 Td (claims.) Tj ET
+BT /F1 8.3 Tf 436.00 606.80 Td (All health content follows) Tj ET
+BT /F1 8.3 Tf 436.00 596.00 Td (approved claim library and) Tj ET
+BT /F1 8.3 Tf 436.00 585.20 Td (escalation policy.) Tj ET
+0.45 w 54.00 576.40 m 558.00 576.40 l S
+0.45 w 54.00 576.40 m 558.00 576.40 l S
+0.35 w 54.00 576.40 m 54.00 535.00 l S
+0.35 w 180.00 576.40 m 180.00 535.00 l S
+0.35 w 306.00 576.40 m 306.00 535.00 l S
+0.35 w 432.00 576.40 m 432.00 535.00 l S
+0.35 w 558.00 576.40 m 558.00 535.00 l S
+BT /F1 8.3 Tf 58.00 565.40 Td (NFR-07) Tj ET
+BT /F1 8.3 Tf 184.00 565.40 Td (Reliability) Tj ET
+BT /F1 8.3 Tf 310.00 565.40 Td (System should degrade) Tj ET
+BT /F1 8.3 Tf 310.00 554.60 Td (gracefully when third-party) Tj ET
+BT /F1 8.3 Tf 310.00 543.80 Td (services fail.) Tj ET
+BT /F1 8.3 Tf 436.00 565.40 Td (Fallback responses and seed) Tj ET
+BT /F1 8.3 Tf 436.00 554.60 Td (data keep demo/storefront) Tj ET
+BT /F1 8.3 Tf 436.00 543.80 Td (usable.) Tj ET
+0.45 w 54.00 535.00 m 558.00 535.00 l S
+0.45 w 54.00 535.00 m 558.00 535.00 l S
+0.35 w 54.00 535.00 m 54.00 493.60 l S
+0.35 w 180.00 535.00 m 180.00 493.60 l S
+0.35 w 306.00 535.00 m 306.00 493.60 l S
+0.35 w 432.00 535.00 m 432.00 493.60 l S
+0.35 w 558.00 535.00 m 558.00 493.60 l S
+BT /F1 8.3 Tf 58.00 524.00 Td (NFR-08) Tj ET
+BT /F1 8.3 Tf 184.00 524.00 Td (Observability) Tj ET
+BT /F1 8.3 Tf 310.00 524.00 Td (Support and engineering need) Tj ET
+BT /F1 8.3 Tf 310.00 513.20 Td (visibility into failures and) Tj ET
+BT /F1 8.3 Tf 310.00 502.40 Td (journeys.) Tj ET
+BT /F1 8.3 Tf 436.00 524.00 Td (Log chatbot failures,) Tj ET
+BT /F1 8.3 Tf 436.00 513.20 Td (escalations, latency, and) Tj ET
+BT /F1 8.3 Tf 436.00 502.40 Td (admin CRUD failures.) Tj ET
+0.45 w 54.00 493.60 m 558.00 493.60 l S
+0.45 w 54.00 493.60 m 558.00 493.60 l S
+0.35 w 54.00 493.60 m 54.00 452.20 l S
+0.35 w 180.00 493.60 m 180.00 452.20 l S
+0.35 w 306.00 493.60 m 306.00 452.20 l S
+0.35 w 432.00 493.60 m 432.00 452.20 l S
+0.35 w 558.00 493.60 m 558.00 452.20 l S
+BT /F1 8.3 Tf 58.00 482.60 Td (NFR-09) Tj ET
+BT /F1 8.3 Tf 184.00 482.60 Td (Auditability) Tj ET
+BT /F1 8.3 Tf 310.00 482.60 Td (Conversation outcomes should) Tj ET
+BT /F1 8.3 Tf 310.00 471.80 Td (be reviewable for training and) Tj ET
+BT /F1 8.3 Tf 310.00 461.00 Td (compliance.) Tj ET
+BT /F1 8.3 Tf 436.00 482.60 Td (Store metadata, category,) Tj ET
+BT /F1 8.3 Tf 436.00 471.80 Td (escalation status, and) Tj ET
+BT /F1 8.3 Tf 436.00 461.00 Td (approved response version.) Tj ET
+0.45 w 54.00 452.20 m 558.00 452.20 l S
+0.45 w 54.00 452.20 m 558.00 452.20 l S
+0.35 w 54.00 452.20 m 54.00 410.80 l S
+0.35 w 180.00 452.20 m 180.00 410.80 l S
+0.35 w 306.00 452.20 m 306.00 410.80 l S
+0.35 w 432.00 452.20 m 432.00 410.80 l S
+0.35 w 558.00 452.20 m 558.00 410.80 l S
+BT /F1 8.3 Tf 58.00 441.20 Td (NFR-10) Tj ET
+BT /F1 8.3 Tf 184.00 441.20 Td (Maintainability) Tj ET
+BT /F1 8.3 Tf 310.00 441.20 Td (Code should be modular and) Tj ET
+BT /F1 8.3 Tf 310.00 430.40 Td (easy to extend.) Tj ET
+BT /F1 8.3 Tf 436.00 441.20 Td (Chat context, AI client, UI,) Tj ET
+BT /F1 8.3 Tf 436.00 430.40 Td (data access, and visuals) Tj ET
+BT /F1 8.3 Tf 436.00 419.60 Td (remain separated.) Tj ET
+0.45 w 54.00 410.80 m 558.00 410.80 l S
+0.45 w 54.00 410.80 m 558.00 410.80 l S
+0.35 w 54.00 410.80 m 54.00 369.40 l S
+0.35 w 180.00 410.80 m 180.00 369.40 l S
+0.35 w 306.00 410.80 m 306.00 369.40 l S
+0.35 w 432.00 410.80 m 432.00 369.40 l S
+0.35 w 558.00 410.80 m 558.00 369.40 l S
+BT /F1 8.3 Tf 58.00 399.80 Td (NFR-11) Tj ET
+BT /F1 8.3 Tf 184.00 399.80 Td (Accessibility) Tj ET
+BT /F1 8.3 Tf 310.00 399.80 Td (Core UI should work with) Tj ET
+BT /F1 8.3 Tf 310.00 389.00 Td (keyboard and screen readers.) Tj ET
+BT /F1 8.3 Tf 436.00 399.80 Td (Accessible labels, keyboard) Tj ET
+BT /F1 8.3 Tf 436.00 389.00 Td (dialogs, and WCAG AA contrast) Tj ET
+BT /F1 8.3 Tf 436.00 378.20 Td (where practical.) Tj ET
+0.45 w 54.00 369.40 m 558.00 369.40 l S
+0.45 w 54.00 369.40 m 558.00 369.40 l S
+0.35 w 54.00 369.40 m 54.00 328.00 l S
+0.35 w 180.00 369.40 m 180.00 328.00 l S
+0.35 w 306.00 369.40 m 306.00 328.00 l S
+0.35 w 432.00 369.40 m 432.00 328.00 l S
+0.35 w 558.00 369.40 m 558.00 328.00 l S
+BT /F1 8.3 Tf 58.00 358.40 Td (NFR-12) Tj ET
+BT /F1 8.3 Tf 184.00 358.40 Td (Usability) Tj ET
+BT /F1 8.3 Tf 310.00 358.40 Td (Customers should understand) Tj ET
+BT /F1 8.3 Tf 310.00 347.60 Td (how to use chat and catalog) Tj ET
+BT /F1 8.3 Tf 310.00 336.80 Td (quickly.) Tj ET
+BT /F1 8.3 Tf 436.00 358.40 Td (Visible chat widget, quick) Tj ET
+BT /F1 8.3 Tf 436.00 347.60 Td (actions, scannable cards.) Tj ET
+0.45 w 54.00 328.00 m 558.00 328.00 l S
+0.45 w 54.00 328.00 m 558.00 328.00 l S
+0.35 w 54.00 328.00 m 54.00 275.80 l S
+0.35 w 180.00 328.00 m 180.00 275.80 l S
+0.35 w 306.00 328.00 m 306.00 275.80 l S
+0.35 w 432.00 328.00 m 432.00 275.80 l S
+0.35 w 558.00 328.00 m 558.00 275.80 l S
+BT /F1 8.3 Tf 58.00 317.00 Td (NFR-13) Tj ET
+BT /F1 8.3 Tf 184.00 317.00 Td (Data Integrity) Tj ET
+BT /F1 8.3 Tf 310.00 317.00 Td (Admin edits must preserve) Tj ET
+BT /F1 8.3 Tf 310.00 306.20 Td (valid data.) Tj ET
+BT /F1 8.3 Tf 436.00 317.00 Td (Required fields, numeric) Tj ET
+BT /F1 8.3 Tf 436.00 306.20 Td (validation, valid status) Tj ET
+BT /F1 8.3 Tf 436.00 295.40 Td (values, unique SKU/email) Tj ET
+BT /F1 8.3 Tf 436.00 284.60 Td (constraints.) Tj ET
+0.45 w 54.00 275.80 m 558.00 275.80 l S
+0.45 w 54.00 275.80 m 558.00 275.80 l S
+0.35 w 54.00 275.80 m 54.00 234.40 l S
+0.35 w 180.00 275.80 m 180.00 234.40 l S
+0.35 w 306.00 275.80 m 306.00 234.40 l S
+0.35 w 432.00 275.80 m 432.00 234.40 l S
+0.35 w 558.00 275.80 m 558.00 234.40 l S
+BT /F1 8.3 Tf 58.00 264.80 Td (NFR-14) Tj ET
+BT /F1 8.3 Tf 184.00 264.80 Td (Backup and Recovery) Tj ET
+BT /F1 8.3 Tf 310.00 264.80 Td (Operational data should be) Tj ET
+BT /F1 8.3 Tf 310.00 254.00 Td (restorable.) Tj ET
+BT /F1 8.3 Tf 436.00 264.80 Td (Supabase backup/export process) Tj ET
+BT /F1 8.3 Tf 436.00 254.00 Td (documented before production) Tj ET
+BT /F1 8.3 Tf 436.00 243.20 Td (launch.) Tj ET
+0.45 w 54.00 234.40 m 558.00 234.40 l S
+0.45 w 54.00 234.40 m 558.00 234.40 l S
+0.35 w 54.00 234.40 m 54.00 193.00 l S
+0.35 w 180.00 234.40 m 180.00 193.00 l S
+0.35 w 306.00 234.40 m 306.00 193.00 l S
+0.35 w 432.00 234.40 m 432.00 193.00 l S
+0.35 w 558.00 234.40 m 558.00 193.00 l S
+BT /F1 8.3 Tf 58.00 223.40 Td (NFR-15) Tj ET
+BT /F1 8.3 Tf 184.00 223.40 Td (Compatibility) Tj ET
+BT /F1 8.3 Tf 310.00 223.40 Td (App should work across modern) Tj ET
+BT /F1 8.3 Tf 310.00 212.60 Td (browsers and responsive) Tj ET
+BT /F1 8.3 Tf 310.00 201.80 Td (layouts.) Tj ET
+BT /F1 8.3 Tf 436.00 223.40 Td (Latest Chrome, Safari, Edge,) Tj ET
+BT /F1 8.3 Tf 436.00 212.60 Td (and mobile responsive) Tj ET
+BT /F1 8.3 Tf 436.00 201.80 Td (viewports.) Tj ET
+0.45 w 54.00 193.00 m 558.00 193.00 l S
+0.45 w 54.00 193.00 m 558.00 193.00 l S
+0.35 w 54.00 193.00 m 54.00 151.60 l S
+0.35 w 180.00 193.00 m 180.00 151.60 l S
+0.35 w 306.00 193.00 m 306.00 151.60 l S
+0.35 w 432.00 193.00 m 432.00 151.60 l S
+0.35 w 558.00 193.00 m 558.00 151.60 l S
+BT /F1 8.3 Tf 58.00 182.00 Td (NFR-16) Tj ET
+BT /F1 8.3 Tf 184.00 182.00 Td (Cost Control) Tj ET
+BT /F1 8.3 Tf 310.00 182.00 Td (AI usage should remain) Tj ET
+BT /F1 8.3 Tf 310.00 171.20 Td (financially predictable.) Tj ET
+BT /F1 8.3 Tf 436.00 182.00 Td (Track usage, define max) Tj ET
+BT /F1 8.3 Tf 436.00 171.20 Td (tokens, add fallback paths,) Tj ET
+BT /F1 8.3 Tf 436.00 160.40 Td (and monitor provider cost.) Tj ET
+0.45 w 54.00 151.60 m 558.00 151.60 l S
+BT /F2 15 Tf 54.00 123.60 Td (9. Data and System Requirements) Tj ET
+0.6 w 54.00 115.35 m 558.00 115.35 l S
+0.45 w 54.00 111.35 m 558.00 111.35 l S
+0.35 w 54.00 111.35 m 54.00 91.55 l S
+0.35 w 222.00 111.35 m 222.00 91.55 l S
+0.35 w 390.00 111.35 m 390.00 91.55 l S
+0.35 w 558.00 111.35 m 558.00 91.55 l S
+BT /F2 8.3 Tf 58.00 100.35 Td (Entity) Tj ET
+BT /F2 8.3 Tf 226.00 100.35 Td (Purpose) Tj ET
+BT /F2 8.3 Tf 394.00 100.35 Td (Important Fields) Tj ET
+0.45 w 54.00 91.55 m 558.00 91.55 l S
+0.45 w 54.00 91.55 m 558.00 91.55 l S
+0.35 w 54.00 91.55 m 54.00 60.95 l S
+0.35 w 222.00 91.55 m 222.00 60.95 l S
+0.35 w 390.00 91.55 m 390.00 60.95 l S
+0.35 w 558.00 91.55 m 558.00 60.95 l S
+BT /F1 8.3 Tf 58.00 80.55 Td (Product) Tj ET
+BT /F1 8.3 Tf 226.00 80.55 Td (Catalog and recommendation source.) Tj ET
+BT /F1 8.3 Tf 394.00 80.55 Td (Name, SKU, category, form, brand, price,) Tj ET
+BT /F1 8.3 Tf 394.00 69.75 Td (inventory, status, description.) Tj ET
+0.45 w 54.00 60.95 m 558.00 60.95 l S
+endstream
+endobj
+8 0 obj
+<< /Length 7987 >>
+stream
+0.45 w 54.00 742.00 m 558.00 742.00 l S
+0.35 w 54.00 742.00 m 54.00 711.40 l S
+0.35 w 222.00 742.00 m 222.00 711.40 l S
+0.35 w 390.00 742.00 m 390.00 711.40 l S
+0.35 w 558.00 742.00 m 558.00 711.40 l S
+BT /F1 8.3 Tf 58.00 731.00 Td (Customer) Tj ET
+BT /F1 8.3 Tf 226.00 731.00 Td (Support and order ownership.) Tj ET
+BT /F1 8.3 Tf 394.00 731.00 Td (Name, email, phone, city, country,) Tj ET
+BT /F1 8.3 Tf 394.00 720.20 Td (created date.) Tj ET
+0.45 w 54.00 711.40 m 558.00 711.40 l S
+0.45 w 54.00 711.40 m 558.00 711.40 l S
+0.35 w 54.00 711.40 m 54.00 680.80 l S
+0.35 w 222.00 711.40 m 222.00 680.80 l S
+0.35 w 390.00 711.40 m 390.00 680.80 l S
+0.35 w 558.00 711.40 m 558.00 680.80 l S
+BT /F1 8.3 Tf 58.00 700.40 Td (Order) Tj ET
+BT /F1 8.3 Tf 226.00 700.40 Td (Order support and admin workflow.) Tj ET
+BT /F1 8.3 Tf 394.00 700.40 Td (Customer ID, status, subtotal, tax,) Tj ET
+BT /F1 8.3 Tf 394.00 689.60 Td (total, created date.) Tj ET
+0.45 w 54.00 680.80 m 558.00 680.80 l S
+0.45 w 54.00 680.80 m 558.00 680.80 l S
+0.35 w 54.00 680.80 m 54.00 650.20 l S
+0.35 w 222.00 680.80 m 222.00 650.20 l S
+0.35 w 390.00 680.80 m 390.00 650.20 l S
+0.35 w 558.00 680.80 m 558.00 650.20 l S
+BT /F1 8.3 Tf 58.00 669.80 Td (Order Item) Tj ET
+BT /F1 8.3 Tf 226.00 669.80 Td (Line-item detail for order view.) Tj ET
+BT /F1 8.3 Tf 394.00 669.80 Td (Order ID, product ID, quantity, unit) Tj ET
+BT /F1 8.3 Tf 394.00 659.00 Td (price.) Tj ET
+0.45 w 54.00 650.20 m 558.00 650.20 l S
+0.45 w 54.00 650.20 m 558.00 650.20 l S
+0.35 w 54.00 650.20 m 54.00 619.60 l S
+0.35 w 222.00 650.20 m 222.00 619.60 l S
+0.35 w 390.00 650.20 m 390.00 619.60 l S
+0.35 w 558.00 650.20 m 558.00 619.60 l S
+BT /F1 8.3 Tf 58.00 639.20 Td (Conversation) Tj ET
+BT /F1 8.3 Tf 226.00 639.20 Td (Future production audit and analytics.) Tj ET
+BT /F1 8.3 Tf 394.00 639.20 Td (User message, bot response, category,) Tj ET
+BT /F1 8.3 Tf 394.00 628.40 Td (confidence, escalation flag, timestamp.) Tj ET
+0.45 w 54.00 619.60 m 558.00 619.60 l S
+BT /F2 12 Tf 54.00 597.60 Td (System Dependencies) Tj ET
+BT /F2 10 Tf 56.00 586.00 Td (-) Tj ET
+BT /F1 10 Tf 70.00 586.00 Td (Frontend: Next.js, React, TypeScript, Tailwind CSS.) Tj ET
+BT /F2 10 Tf 56.00 571.50 Td (-) Tj ET
+BT /F1 10 Tf 70.00 571.50 Td (Database: Supabase for products, customers, orders, and order items.) Tj ET
+BT /F2 10 Tf 56.00 557.00 Td (-) Tj ET
+BT /F1 10 Tf 70.00 557.00 Td (AI Provider: OpenRouter-backed assistant in the current prototype; production should route through) Tj ET
+BT /F1 10 Tf 70.00 543.50 Td (server-side APIs.) Tj ET
+BT /F2 10 Tf 56.00 529.00 Td (-) Tj ET
+BT /F1 10 Tf 70.00 529.00 Td (State: Zustand local cart persistence for storefront cart.) Tj ET
+BT /F2 15 Tf 54.00 496.50 Td (10. Compliance and Safety Rules) Tj ET
+0.6 w 54.00 488.25 m 558.00 488.25 l S
+BT /F2 10 Tf 56.00 480.25 Td (-) Tj ET
+BT /F1 10 Tf 70.00 480.25 Td (Bot must not diagnose diseases or recommend treatment plans.) Tj ET
+BT /F2 10 Tf 56.00 465.75 Td (-) Tj ET
+BT /F1 10 Tf 70.00 465.75 Td (Bot must not claim a supplement cures, prevents, or treats a disease unless specifically approved by) Tj ET
+BT /F1 10 Tf 70.00 452.25 Td (compliance.) Tj ET
+BT /F2 10 Tf 56.00 437.75 Td (-) Tj ET
+BT /F1 10 Tf 70.00 437.75 Td (Bot must recommend consulting a healthcare professional for pregnancy, chronic disease, medication) Tj ET
+BT /F1 10 Tf 70.00 424.25 Td (interactions, severe symptoms, or dosage uncertainty.) Tj ET
+BT /F2 10 Tf 56.00 409.75 Td (-) Tj ET
+BT /F1 10 Tf 70.00 409.75 Td (Bot must not replace doctor, pharmacist, or nutritionist guidance.) Tj ET
+BT /F2 10 Tf 56.00 395.25 Td (-) Tj ET
+BT /F1 10 Tf 70.00 395.25 Td (Bot must not invent ingredients, certifications, clinical proof, delivery promises, or refund) Tj ET
+BT /F1 10 Tf 70.00 381.75 Td (approvals.) Tj ET
+BT /F2 10 Tf 56.00 367.25 Td (-) Tj ET
+BT /F1 10 Tf 70.00 367.25 Td (Every risky query should be escalated or answered with conservative general information.) Tj ET
+BT /F2 15 Tf 54.00 334.75 Td (11. Release Plan) Tj ET
+0.6 w 54.00 326.50 m 558.00 326.50 l S
+0.45 w 54.00 322.50 m 558.00 322.50 l S
+0.35 w 54.00 322.50 m 54.00 302.70 l S
+0.35 w 180.00 322.50 m 180.00 302.70 l S
+0.35 w 306.00 322.50 m 306.00 302.70 l S
+0.35 w 432.00 322.50 m 432.00 302.70 l S
+0.35 w 558.00 322.50 m 558.00 302.70 l S
+BT /F2 8.3 Tf 58.00 311.50 Td (Phase) Tj ET
+BT /F2 8.3 Tf 184.00 311.50 Td (Timeline) Tj ET
+BT /F2 8.3 Tf 310.00 311.50 Td (Activities) Tj ET
+BT /F2 8.3 Tf 436.00 311.50 Td (Exit Criteria) Tj ET
+0.45 w 54.00 302.70 m 558.00 302.70 l S
+0.45 w 54.00 302.70 m 558.00 302.70 l S
+0.35 w 54.00 302.70 m 54.00 261.30 l S
+0.35 w 180.00 302.70 m 180.00 261.30 l S
+0.35 w 306.00 302.70 m 306.00 261.30 l S
+0.35 w 432.00 302.70 m 432.00 261.30 l S
+0.35 w 558.00 302.70 m 558.00 261.30 l S
+BT /F1 8.3 Tf 58.00 291.70 Td (Discovery) Tj ET
+BT /F1 8.3 Tf 184.00 291.70 Td (Week 1) Tj ET
+BT /F1 8.3 Tf 310.00 291.70 Td (Finalize FAQs, product data,) Tj ET
+BT /F1 8.3 Tf 310.00 280.90 Td (policies, escalation rules,) Tj ET
+BT /F1 8.3 Tf 310.00 270.10 Td (compliance restrictions.) Tj ET
+BT /F1 8.3 Tf 436.00 291.70 Td (Approved knowledge base and) Tj ET
+BT /F1 8.3 Tf 436.00 280.90 Td (escalation matrix.) Tj ET
+0.45 w 54.00 261.30 m 558.00 261.30 l S
+0.45 w 54.00 261.30 m 558.00 261.30 l S
+0.35 w 54.00 261.30 m 54.00 219.90 l S
+0.35 w 180.00 261.30 m 180.00 219.90 l S
+0.35 w 306.00 261.30 m 306.00 219.90 l S
+0.35 w 432.00 261.30 m 432.00 219.90 l S
+0.35 w 558.00 261.30 m 558.00 219.90 l S
+BT /F1 8.3 Tf 58.00 250.30 Td (Prototype) Tj ET
+BT /F1 8.3 Tf 184.00 250.30 Td (Week 2) Tj ET
+BT /F1 8.3 Tf 310.00 250.30 Td (Configure storefront, admin) Tj ET
+BT /F1 8.3 Tf 310.00 239.50 Td (dashboard, chatbot context,) Tj ET
+BT /F1 8.3 Tf 310.00 228.70 Td (and demo data.) Tj ET
+BT /F1 8.3 Tf 436.00 250.30 Td (Internal demo answers core) Tj ET
+BT /F1 8.3 Tf 436.00 239.50 Td (product/order questions.) Tj ET
+0.45 w 54.00 219.90 m 558.00 219.90 l S
+0.45 w 54.00 219.90 m 558.00 219.90 l S
+0.35 w 54.00 219.90 m 54.00 178.50 l S
+0.35 w 180.00 219.90 m 180.00 178.50 l S
+0.35 w 306.00 219.90 m 306.00 178.50 l S
+0.35 w 432.00 219.90 m 432.00 178.50 l S
+0.35 w 558.00 219.90 m 558.00 178.50 l S
+BT /F1 8.3 Tf 58.00 208.90 Td (Compliance Testing) Tj ET
+BT /F1 8.3 Tf 184.00 208.90 Td (Week 3) Tj ET
+BT /F1 8.3 Tf 310.00 208.90 Td (Test risky prompts, medical) Tj ET
+BT /F1 8.3 Tf 310.00 198.10 Td (questions, complaints, and) Tj ET
+BT /F1 8.3 Tf 310.00 187.30 Td (edge cases.) Tj ET
+BT /F1 8.3 Tf 436.00 208.90 Td (Compliance signs off on) Tj ET
+BT /F1 8.3 Tf 436.00 198.10 Td (guardrail behavior.) Tj ET
+0.45 w 54.00 178.50 m 558.00 178.50 l S
+0.45 w 54.00 178.50 m 558.00 178.50 l S
+0.35 w 54.00 178.50 m 54.00 137.10 l S
+0.35 w 180.00 178.50 m 180.00 137.10 l S
+0.35 w 306.00 178.50 m 306.00 137.10 l S
+0.35 w 432.00 178.50 m 432.00 137.10 l S
+0.35 w 558.00 178.50 m 558.00 137.10 l S
+BT /F1 8.3 Tf 58.00 167.50 Td (Pilot) Tj ET
+BT /F1 8.3 Tf 184.00 167.50 Td (Week 4) Tj ET
+BT /F1 8.3 Tf 310.00 167.50 Td (Launch to limited website) Tj ET
+BT /F1 8.3 Tf 310.00 156.70 Td (traffic or internal users.) Tj ET
+BT /F1 8.3 Tf 436.00 167.50 Td (Bot resolves routine questions) Tj ET
+BT /F1 8.3 Tf 436.00 156.70 Td (with acceptable CSAT and) Tj ET
+BT /F1 8.3 Tf 436.00 145.90 Td (escalation accuracy.) Tj ET
+0.45 w 54.00 137.10 m 558.00 137.10 l S
+0.45 w 54.00 137.10 m 558.00 137.10 l S
+0.35 w 54.00 137.10 m 54.00 95.70 l S
+0.35 w 180.00 137.10 m 180.00 95.70 l S
+0.35 w 306.00 137.10 m 306.00 95.70 l S
+0.35 w 432.00 137.10 m 432.00 95.70 l S
+0.35 w 558.00 137.10 m 558.00 95.70 l S
+BT /F1 8.3 Tf 58.00 126.10 Td (Production) Tj ET
+BT /F1 8.3 Tf 184.00 126.10 Td (Week 5+) Tj ET
+BT /F1 8.3 Tf 310.00 126.10 Td (Full website rollout,) Tj ET
+BT /F1 8.3 Tf 310.00 115.30 Td (monitoring, reporting, and) Tj ET
+BT /F1 8.3 Tf 310.00 104.50 Td (optimization.) Tj ET
+BT /F1 8.3 Tf 436.00 126.10 Td (KPIs tracked weekly and) Tj ET
+BT /F1 8.3 Tf 436.00 115.30 Td (improvement backlog created.) Tj ET
+0.45 w 54.00 95.70 m 558.00 95.70 l S
+endstream
+endobj
+9 0 obj
+<< /Length 5087 >>
+stream
+BT /F2 15 Tf 54.00 724.00 Td (12. Risks and Mitigations) Tj ET
+0.6 w 54.00 715.75 m 558.00 715.75 l S
+0.45 w 54.00 711.75 m 558.00 711.75 l S
+0.35 w 54.00 711.75 m 54.00 691.95 l S
+0.35 w 222.00 711.75 m 222.00 691.95 l S
+0.35 w 390.00 711.75 m 390.00 691.95 l S
+0.35 w 558.00 711.75 m 558.00 691.95 l S
+BT /F2 8.3 Tf 58.00 700.75 Td (Risk) Tj ET
+BT /F2 8.3 Tf 226.00 700.75 Td (Impact) Tj ET
+BT /F2 8.3 Tf 394.00 700.75 Td (Mitigation) Tj ET
+0.45 w 54.00 691.95 m 558.00 691.95 l S
+0.45 w 54.00 691.95 m 558.00 691.95 l S
+0.35 w 54.00 691.95 m 54.00 661.35 l S
+0.35 w 222.00 691.95 m 222.00 661.35 l S
+0.35 w 390.00 691.95 m 390.00 661.35 l S
+0.35 w 558.00 691.95 m 558.00 661.35 l S
+BT /F1 8.3 Tf 58.00 680.95 Td (Bot provides inaccurate supplement) Tj ET
+BT /F1 8.3 Tf 58.00 670.15 Td (guidance.) Tj ET
+BT /F1 8.3 Tf 226.00 680.95 Td (High compliance and customer safety risk.) Tj ET
+BT /F1 8.3 Tf 394.00 680.95 Td (Use approved knowledge base, guardrails,) Tj ET
+BT /F1 8.3 Tf 394.00 670.15 Td (and human escalation.) Tj ET
+0.45 w 54.00 661.35 m 558.00 661.35 l S
+0.45 w 54.00 661.35 m 558.00 661.35 l S
+0.35 w 54.00 661.35 m 54.00 630.75 l S
+0.35 w 222.00 661.35 m 222.00 630.75 l S
+0.35 w 390.00 661.35 m 390.00 630.75 l S
+0.35 w 558.00 661.35 m 558.00 630.75 l S
+BT /F1 8.3 Tf 58.00 650.35 Td (API key exposure in browser.) Tj ET
+BT /F1 8.3 Tf 226.00 650.35 Td (High security and cost risk.) Tj ET
+BT /F1 8.3 Tf 394.00 650.35 Td (Move AI calls to server-side route before) Tj ET
+BT /F1 8.3 Tf 394.00 639.55 Td (production.) Tj ET
+0.45 w 54.00 630.75 m 558.00 630.75 l S
+0.45 w 54.00 630.75 m 558.00 630.75 l S
+0.35 w 54.00 630.75 m 54.00 600.15 l S
+0.35 w 222.00 630.75 m 222.00 600.15 l S
+0.35 w 390.00 630.75 m 390.00 600.15 l S
+0.35 w 558.00 630.75 m 558.00 600.15 l S
+BT /F1 8.3 Tf 58.00 619.75 Td (Overly permissive database access.) Tj ET
+BT /F1 8.3 Tf 226.00 619.75 Td (High data integrity and privacy risk.) Tj ET
+BT /F1 8.3 Tf 394.00 619.75 Td (Use authenticated admin access and) Tj ET
+BT /F1 8.3 Tf 394.00 608.95 Td (restrictive RLS policies.) Tj ET
+0.45 w 54.00 600.15 m 558.00 600.15 l S
+0.45 w 54.00 600.15 m 558.00 600.15 l S
+0.35 w 54.00 600.15 m 54.00 569.55 l S
+0.35 w 222.00 600.15 m 222.00 569.55 l S
+0.35 w 390.00 600.15 m 390.00 569.55 l S
+0.35 w 558.00 600.15 m 558.00 569.55 l S
+BT /F1 8.3 Tf 58.00 589.15 Td (Customers distrust bot responses.) Tj ET
+BT /F1 8.3 Tf 226.00 589.15 Td (Medium adoption risk.) Tj ET
+BT /F1 8.3 Tf 394.00 589.15 Td (Use clear brand tone, concise answers,) Tj ET
+BT /F1 8.3 Tf 394.00 578.35 Td (and easy human handoff.) Tj ET
+0.45 w 54.00 569.55 m 558.00 569.55 l S
+0.45 w 54.00 569.55 m 558.00 569.55 l S
+0.35 w 54.00 569.55 m 54.00 538.95 l S
+0.35 w 222.00 569.55 m 222.00 538.95 l S
+0.35 w 390.00 569.55 m 390.00 538.95 l S
+0.35 w 558.00 569.55 m 558.00 538.95 l S
+BT /F1 8.3 Tf 58.00 558.55 Td (Low-quality knowledge base.) Tj ET
+BT /F1 8.3 Tf 226.00 558.55 Td (High answer quality risk.) Tj ET
+BT /F1 8.3 Tf 394.00 558.55 Td (Maintain product, policy, and FAQ data) Tj ET
+BT /F1 8.3 Tf 394.00 547.75 Td (through support/product owner.) Tj ET
+0.45 w 54.00 538.95 m 558.00 538.95 l S
+0.45 w 54.00 538.95 m 558.00 538.95 l S
+0.35 w 54.00 538.95 m 54.00 508.35 l S
+0.35 w 222.00 538.95 m 222.00 508.35 l S
+0.35 w 390.00 538.95 m 390.00 508.35 l S
+0.35 w 558.00 538.95 m 558.00 508.35 l S
+BT /F1 8.3 Tf 58.00 527.95 Td (Provider latency or downtime.) Tj ET
+BT /F1 8.3 Tf 226.00 527.95 Td (Medium service risk.) Tj ET
+BT /F1 8.3 Tf 394.00 527.95 Td (Add fallback responses, retries, and) Tj ET
+BT /F1 8.3 Tf 394.00 517.15 Td (status monitoring.) Tj ET
+0.45 w 54.00 508.35 m 558.00 508.35 l S
+BT /F2 15 Tf 54.00 480.35 Td (13. Open Questions) Tj ET
+0.6 w 54.00 472.10 m 558.00 472.10 l S
+BT /F2 10 Tf 56.00 464.10 Td (-) Tj ET
+BT /F1 10 Tf 70.00 464.10 Td (Which exact FSSAI/UK ASA approved claims can be used for each product category?) Tj ET
+BT /F2 10 Tf 56.00 449.60 Td (-) Tj ET
+BT /F1 10 Tf 70.00 449.60 Td (What CRM, ticketing, email, or WhatsApp platform should escalations integrate with in Phase 2?) Tj ET
+BT /F2 10 Tf 56.00 435.10 Td (-) Tj ET
+BT /F1 10 Tf 70.00 435.10 Td (What are the official support hours for India and UK customers?) Tj ET
+BT /F2 10 Tf 56.00 420.60 Td (-) Tj ET
+BT /F1 10 Tf 70.00 420.60 Td (Which analytics events should be included in the weekly leadership report?) Tj ET
+BT /F2 10 Tf 56.00 406.10 Td (-) Tj ET
+BT /F1 10 Tf 70.00 406.10 Td (What customer data retention policy should apply to chat transcripts?) Tj ET
+BT /F2 15 Tf 54.00 373.60 Td (14. Acceptance Summary) Tj ET
+0.6 w 54.00 365.35 m 558.00 365.35 l S
+BT /F1 10 Tf 54.00 357.35 Td (The Phase 1 product is acceptable when customers can use the website chatbot to receive safe product and) Tj ET
+BT /F1 10 Tf 54.00 343.85 Td (order-support guidance, admins can manage core catalog/customer/order data, risky queries are escalated) Tj ET
+BT /F1 10 Tf 54.00 330.35 Td (rather than over-answered, and leadership can evaluate deflection and support workload improvement through) Tj ET
+BT /F1 10 Tf 54.00 316.85 Td (measurable KPIs.) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 17 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 3 0 R >>
+endobj
+11 0 obj
+<< /Type /Page /Parent 17 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 4 0 R >>
+endobj
+12 0 obj
+<< /Type /Page /Parent 17 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 5 0 R >>
+endobj
+13 0 obj
+<< /Type /Page /Parent 17 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 6 0 R >>
+endobj
+14 0 obj
+<< /Type /Page /Parent 17 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 7 0 R >>
+endobj
+15 0 obj
+<< /Type /Page /Parent 17 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 8 0 R >>
+endobj
+16 0 obj
+<< /Type /Page /Parent 17 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 9 0 R >>
+endobj
+17 0 obj
+<< /Type /Pages /Kids [10 0 R 11 0 R 12 0 R 13 0 R 14 0 R 15 0 R 16 0 R] /Count 7 >>
+endobj
+18 0 obj
+<< /Type /Catalog /Pages 17 0 R >>
+endobj
+xref
+0 19
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000006251 00000 n 
+0000013095 00000 n 
+0000021726 00000 n 
+0000031720 00000 n 
+0000042849 00000 n 
+0000050888 00000 n 
+0000056027 00000 n 
+0000056165 00000 n 
+0000056303 00000 n 
+0000056441 00000 n 
+0000056579 00000 n 
+0000056717 00000 n 
+0000056855 00000 n 
+0000056993 00000 n 
+0000057094 00000 n 
+trailer
+<< /Size 19 /Root 18 0 R >>
+startxref
+57145
+%%EOF
